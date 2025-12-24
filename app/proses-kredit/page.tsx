@@ -1,71 +1,65 @@
+"use client";
+
 import { SITE_CONFIG } from "../../lib/config";
 
 export default function ProsesKreditPage() {
   const steps = [
-    { n: 1, title: "Pemesanan (SPK)", desc: "Tentukan tipe, warna, dan bayar Booking Fee sebagai tanda jadi pemesanan unit." },
-    { n: 2, title: "Proses Data", desc: "Penyerahan dokumen persyaratan kredit. Tim kami akan bantu proses survey leasing." },
-    { n: 3, title: "Approval (PO)", desc: "Kabar gembira! Kredit disetujui. Unit dialokasikan untuk Anda." },
-    { n: 4, title: "Pelunasan DP", desc: "Pembayaran sisa uang muka. Administrasi STNK diproses." },
-    { n: 5, title: "Delivery", desc: "Unit dikirim ke rumah Anda. Cek fisik kendaraan dan serah terima!", isSuccess: true },
+    { n: "01", title: "PEMESANAN (SPK)", desc: "Pilih unit, warna, dan tanda jadi pemesanan." },
+    { n: "02", title: "DATA KREDIT", desc: "Penyerahan dokumen persyaratan untuk leasing." },
+    { n: "03", title: "APPROVAL", desc: "Proses persetujuan kredit oleh pihak bank/leasing." },
+    { n: "04", title: "PELUNASAN", desc: "Pembayaran sisa uang muka dan administrasi." },
+    { n: "05", title: "DELIVERY", desc: "Unit dikirim langsung dengan towing ke rumah Anda." },
   ];
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <section className="bg-hyundai-primary text-white pt-32 pb-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">Proses Kredit Mudah & Transparan</h1>
-          <p className="text-blue-100 max-w-2xl mx-auto">Kami memandu Anda langkah demi langkah, dari pemilihan unit hingga mobil parkir di garasi Anda.</p>
+    <div className="bg-hyundai-sand min-h-screen pb-20 overflow-hidden">
+      {/* --- HEADER DENGAN BG SHOWROOM --- */}
+      <section className="relative h-[400px] flex items-center justify-center overflow-hidden">
+        <img src="/assets/backgroud/hyundai-simprug.jpeg" className="absolute inset-0 w-full h-full object-cover" alt="Showroom" />
+        <div className="absolute inset-0 bg-hyundai-navy/90 backdrop-blur-sm"></div>
+        <div className="relative z-10 text-center px-6">
+          <h1 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter">PROSES KREDIT</h1>
+          <p className="text-hyundai-blue font-bold tracking-[0.4em] text-[10px] mt-6 uppercase">Mudah, Cepat, dan Transparan</p>
         </div>
       </section>
 
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-center text-hyundai-primary mb-12">5 Langkah Menuju Mobil Impian</h2>
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-            {steps.map((step) => (
-              <div key={step.n} className="bg-white p-6 rounded-xl border border-gray-100 shadow-lg text-center transform hover:-translate-y-1 transition duration-300">
-                <div className={`w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4 border-4 border-white shadow-sm font-bold text-xl ${step.isSuccess ? "bg-green-100 text-green-600" : "bg-blue-100 text-hyundai-primary"}`}>
-                  {step.isSuccess ? <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg> : step.n}
-                </div>
-                <h3 className="font-bold text-lg mb-2">{step.title}</h3>
-                <p className="text-sm text-gray-500">{step.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-hyundai-light">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-center text-hyundai-primary mb-12">Syarat Dokumen Kredit</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Perorangan */}
-            <div className="bg-white rounded-2xl shadow-md overflow-hidden">
-              <div className="bg-hyundai-secondary p-4 text-white text-center font-bold text-lg">Karyawan / Perorangan</div>
-              <div className="p-8">
-                <ul className="space-y-4 text-gray-700">
-                  {["Fotokopi KTP Suami & Istri", "Fotokopi Kartu Keluarga (KK)", "Fotokopi NPWP", "PBB Rumah / Rekening Listrik", "Rekening Tabungan 3 Bulan Terakhir", "Slip Gaji / Surat Keterangan Kerja"].map(item => (
-                    <li key={item} className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+      {/* --- CONTENT SECTION --- */}
+      <section className="max-w-7xl mx-auto px-6 -mt-20 relative z-20">
+        <div className="grid md:grid-cols-5 gap-4">
+          {steps.map((step) => (
+            <div key={step.n} className="bg-white p-8 border border-gray-100 shadow-xl flex flex-col items-center text-center group hover:bg-hyundai-navy transition-all duration-500">
+              <span className="text-4xl font-black text-hyundai-blue/20 group-hover:text-hyundai-blue transition-colors mb-4">{step.n}</span>
+              <h3 className="text-[11px] font-black text-hyundai-navy group-hover:text-white uppercase tracking-widest mb-4">{step.title}</h3>
+              <p className="text-[11px] text-gray-500 group-hover:text-gray-300 font-medium leading-relaxed">{step.desc}</p>
             </div>
-            {/* Perusahaan */}
-            <div className="bg-white rounded-2xl shadow-md overflow-hidden">
-              <div className="bg-hyundai-primary p-4 text-white text-center font-bold text-lg">Perusahaan / PT</div>
-              <div className="p-8 text-gray-700">
-                <ul className="space-y-4">
-                  {["Akta Pendirian & Perubahan", "SIUP, TDP, NIB, NPWP Perusahaan", "KTP Direksi & Komisaris", "Rekening Koran 3 Bulan Terakhir", "Domisili Perusahaan"].map(item => (
-                    <li key={item} className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          ))}
+        </div>
+
+        {/* Syarat Dokumen dengan Dekorasi Mobil Transparan */}
+        <div className="mt-20 bg-white p-10 lg:p-16 shadow-2xl relative overflow-hidden border border-gray-50">
+          <img src="/foto-product/de48b09298_hyundai-staria-color-999145-removebg-preview-1.png" className="absolute -right-20 -bottom-10 w-96 opacity-[0.05] pointer-events-none" alt="Deco" />
+
+          <h2 className="text-2xl font-black text-hyundai-navy uppercase tracking-tighter mb-12 border-b-2 border-hyundai-blue inline-block pb-2">Persyaratan Dokumen</h2>
+
+          <div className="grid md:grid-cols-2 gap-12 relative z-10">
+            <div className="space-y-6">
+              <h4 className="text-[11px] font-black text-hyundai-blue uppercase tracking-widest">Perorangan / Karyawan</h4>
+              <ul className="space-y-4 text-[12px] font-bold text-hyundai-navy uppercase tracking-wider">
+                <li className="flex gap-3"><span>•</span> KTP Suami & Istri</li>
+                <li className="flex gap-3"><span>•</span> Kartu Keluarga</li>
+                <li className="flex gap-3"><span>•</span> NPWP & PBB Rumah</li>
+                <li className="flex gap-3"><span>•</span> Rekening Tabungan 3 Bulan</li>
+                <li className="flex gap-3"><span>•</span> Slip Gaji / SKU</li>
+              </ul>
+            </div>
+            <div className="space-y-6">
+              <h4 className="text-[11px] font-black text-hyundai-blue uppercase tracking-widest">Perusahaan / PT</h4>
+              <ul className="space-y-4 text-[12px] font-bold text-hyundai-navy uppercase tracking-wider">
+                <li className="flex gap-3"><span>•</span> Akta Pendirian & SIUP</li>
+                <li className="flex gap-3"><span>•</span> KTP Direksi & Komisaris</li>
+                <li className="flex gap-3"><span>•</span> Rekening Koran Perusahaan</li>
+                <li className="flex gap-3"><span>•</span> NPWP & NIB</li>
+              </ul>
             </div>
           </div>
         </div>

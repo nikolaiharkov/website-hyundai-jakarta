@@ -3,91 +3,150 @@ import { SITE_CONFIG } from "../lib/config";
 import { PRODUCTS } from "../lib/products";
 
 export default function HomePage() {
-  const featured = PRODUCTS.slice(0, 3);
+  // Filter produk unggulan
+  const featuredProducts = PRODUCTS.filter(p =>
+    ["Stargazer", "Creta", "IONIQ 5"].includes(p.name)
+  ).slice(0, 3);
 
   return (
-    <>
-      {/* Hero Section dengan Dekorasi SVG */}
-      <section className="relative overflow-hidden bg-hyundai-navy min-h-[90vh] flex items-center">
-        {/* Background Decoration SVG */}
-        <div className="absolute inset-0 z-0 opacity-20">
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <defs>
-              <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" strokeWidth="0.5"/>
-              </pattern>
-            </defs>
-            <rect width="100" height="100" fill="url(#grid)" />
-          </svg>
+    <div className="bg-white overflow-hidden">
+      {/* --- HERO SECTION --- */}
+      <section className="relative min-h-[90vh] flex items-center">
+        {/* Background Image & Dark Overlay untuk Kontras Teks Putih */}
+        <div className="absolute inset-0 z-0">
+          <img src="/assets/backgroud/hyundai-simprug.jpeg" alt="Hyundai Showroom" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-hyundai-navy/95 via-hyundai-navy/80 to-transparent"></div>
         </div>
 
-        {/* Abstract Shape SVG */}
-        <div className="absolute top-0 right-0 -mr-20 -mt-20 z-0 text-hyundai-blue/20">
-          <svg width="600" height="600" viewBox="0 0 200 200" fill="currentColor">
-            <circle cx="100" cy="100" r="80" />
-          </svg>
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 py-20 grid lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10 py-20 lg:py-0">
           <div className="text-white">
-            <h1 className="text-5xl lg:text-7xl font-extrabold leading-tight mb-6 tracking-tight">
-              Driving <span className="text-hyundai-blue">Future</span> <br/>With Style.
+            <div className="inline-flex items-center gap-2 px-4 py-1 border border-hyundai-blue text-hyundai-blue text-[10px] font-black uppercase tracking-[0.3em] mb-6 bg-hyundai-navy/40 backdrop-blur-md rounded-sm">
+              <i className="fa-solid fa-certificate"></i> Official Consultant
+            </div>
+
+            <h1 className="text-5xl lg:text-7xl font-black tracking-tighter leading-tight mb-6 drop-shadow-xl">
+              Inovasi <br/>
+              <span className="text-hyundai-blue">Berkendara.</span>
             </h1>
-            <p className="text-xl text-gray-300 mb-10 max-w-lg font-light leading-relaxed">
+
+            <p className="text-lg text-gray-200 font-light max-w-md leading-relaxed mb-10 drop-shadow-md">
               {SITE_CONFIG.HERO_SUBHEAD}
             </p>
+
             <div className="flex flex-wrap gap-4">
-              <Link href="/pricelist" className="bg-hyundai-blue hover:bg-white hover:text-hyundai-navy px-10 py-4 rounded-sm font-bold transition-all duration-300 uppercase tracking-widest text-sm shadow-xl">
-                Explore Models
+              {/* Tombol Utama: Biru Solid (Kontras Tinggi) */}
+              <Link href="/pricelist" className="bg-hyundai-blue text-white px-8 py-4 font-bold uppercase tracking-widest text-[11px] hover:bg-white hover:text-hyundai-navy transition-all duration-300 shadow-lg rounded-sm flex items-center gap-3">
+                <i className="fa-solid fa-tag"></i> Lihat Promo
               </Link>
-              <a href={SITE_CONFIG.WHATSAPP_LINK} className="border-2 border-white/30 hover:bg-white/10 px-10 py-4 rounded-sm font-bold transition-all text-sm uppercase tracking-widest">
-                Consultation
+
+              {/* Tombol Sekunder: Border Putih */}
+              <a href={SITE_CONFIG.WHATSAPP_LINK} className="border-2 border-white text-white px-8 py-4 font-bold uppercase tracking-widest text-[11px] hover:bg-white hover:text-hyundai-navy transition-all rounded-sm flex items-center gap-3">
+                <i className="fa-brands fa-whatsapp text-lg"></i> Konsultasi
               </a>
             </div>
           </div>
-          <div className="hidden lg:block relative">
-             {/* Product Spotlight Image */}
-             <img src="/foto-product/18ce96208b_hyundai-ioniq-5-color-751349-removebg-preview-1.png" className="w-full drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)] scale-125" alt="Hero Car" />
+
+          <div className="hidden lg:block relative group z-20">
+            <img
+              src="/foto-product/18ce96208b_hyundai-ioniq-5-color-751349-removebg-preview-1.png"
+              className="w-full drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform group-hover:scale-105 transition-transform duration-700"
+              alt="Hyundai Ioniq 5"
+            />
           </div>
         </div>
       </section>
 
-      {/* Benefit Section dengan Icon SVG Clean */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-16">
-            <div className="group">
-              <div className="text-hyundai-navy mb-6 group-hover:text-hyundai-blue transition-colors">
-                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
+      {/* --- KEUNGGULAN (BENEFITS) DENGAN FONTAWESOME --- */}
+      <section className="py-24 bg-white relative border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-hyundai-blue mb-3">
+              <i className="fa-solid fa-star mr-2"></i> Kenapa Kami
+            </h2>
+            <p className="text-3xl font-black uppercase tracking-tighter text-hyundai-navy">Standar Layanan Premium</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Benefit 1 */}
+            <div className="bg-hyundai-sand p-8 rounded-xl border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+              <div className="w-14 h-14 bg-white text-hyundai-navy rounded-lg flex items-center justify-center text-2xl shadow-sm mb-6 group-hover:bg-hyundai-navy group-hover:text-hyundai-blue transition-colors">
+                <i className="fa-solid fa-shield-halved"></i>
               </div>
-              <h3 className="text-lg font-bold uppercase tracking-widest mb-4">Official Warranty</h3>
-              <p className="text-hyundai-subtext leading-relaxed">Layanan purna jual resmi Hyundai Indonesia dengan garansi mesin dan baterai terbaik di kelasnya.</p>
+              <h3 className="text-sm font-black uppercase tracking-widest text-hyundai-navy mb-4">Garansi Resmi</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">Jaminan purna jual standar Hyundai Indonesia untuk mesin dan baterai kendaraan Anda.</p>
             </div>
 
-            <div className="group">
-              <div className="text-hyundai-navy mb-6 group-hover:text-hyundai-blue transition-colors">
-                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
+            {/* Benefit 2 */}
+            <div className="bg-hyundai-sand p-8 rounded-xl border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+              <div className="w-14 h-14 bg-white text-hyundai-navy rounded-lg flex items-center justify-center text-2xl shadow-sm mb-6 group-hover:bg-hyundai-navy group-hover:text-hyundai-blue transition-colors">
+                <i className="fa-solid fa-bolt"></i>
               </div>
-              <h3 className="text-lg font-bold uppercase tracking-widest mb-4">Fast Process</h3>
-              <p className="text-hyundai-subtext leading-relaxed">Proses pengajuan kredit yang transparan, cepat, dan data dibantu hingga pengiriman unit ke garasi Anda.</p>
+              <h3 className="text-sm font-black uppercase tracking-widest text-hyundai-navy mb-4">Proses Cepat</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">Data dibantu hingga approve. Kami menangani seluruh proses administrasi leasing dengan cepat.</p>
             </div>
 
-            <div className="group">
-              <div className="text-hyundai-navy mb-6 group-hover:text-hyundai-blue transition-colors">
-                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
+            {/* Benefit 3 */}
+            <div className="bg-hyundai-sand p-8 rounded-xl border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+              <div className="w-14 h-14 bg-white text-hyundai-navy rounded-lg flex items-center justify-center text-2xl shadow-sm mb-6 group-hover:bg-hyundai-navy group-hover:text-hyundai-blue transition-colors">
+                <i className="fa-solid fa-house-chimney-user"></i>
               </div>
-              <h3 className="text-lg font-bold uppercase tracking-widest mb-4">Home Test Drive</h3>
-              <p className="text-hyundai-subtext leading-relaxed">Nikmati kemudahan mencoba mobil impian langsung di rumah atau kantor Anda tanpa biaya tambahan.</p>
+              <h3 className="text-sm font-black uppercase tracking-widest text-hyundai-navy mb-4">Home Test Drive</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">Unit test drive kami antar ke rumah atau kantor Anda. Coba kenyamanan Hyundai tanpa macet.</p>
             </div>
           </div>
         </div>
       </section>
-    </>
+
+      {/* --- FEATURED MODELS --- */}
+      <section className="py-24 bg-hyundai-sand">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div>
+              <p className="text-hyundai-blue font-bold tracking-[0.3em] uppercase text-[10px] mb-2">
+                <i className="fa-solid fa-fire mr-1"></i> Pilihan Favorit
+              </p>
+              <h2 className="text-4xl font-black text-hyundai-navy tracking-tighter uppercase">Model Terpopuler</h2>
+            </div>
+            {/* Tombol Teks Gelap agar terlihat di background Sand */}
+            <Link href="/pricelist" className="group flex items-center gap-2 text-xs font-black uppercase tracking-widest text-hyundai-navy border-b-2 border-hyundai-blue pb-1 hover:text-hyundai-blue transition-colors">
+              Lihat Semua Unit <i className="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+            </Link>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-10">
+            {featuredProducts.map((product) => (
+              <div key={product.id} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 group">
+                <div className="p-8 aspect-[16/10] flex items-center justify-center bg-gradient-to-b from-gray-50 to-white relative">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full object-contain group-hover:scale-110 transition-transform duration-700 z-10"
+                  />
+                </div>
+                <div className="p-8">
+                  <div className="flex justify-between items-start mb-4">
+                    <p className="text-[9px] font-bold text-hyundai-blue uppercase tracking-widest border border-hyundai-blue/20 px-2 py-1 rounded">
+                      {product.category}
+                    </p>
+                  </div>
+                  <h3 className="text-2xl font-black text-hyundai-navy uppercase tracking-tight mb-6">{product.name}</h3>
+
+                  <div className="flex justify-between items-end border-t border-gray-100 pt-6">
+                    <div>
+                      <p className="text-[9px] text-gray-400 uppercase font-bold tracking-widest mb-1">Mulai Dari</p>
+                      <p className="text-lg font-black text-hyundai-navy">{product.price}</p>
+                    </div>
+                    {/* Tombol Detail Navy Solid */}
+                    <Link href="/pricelist" className="w-10 h-10 bg-hyundai-navy text-white rounded-full flex items-center justify-center hover:bg-hyundai-blue transition-colors shadow-lg">
+                       <i className="fa-solid fa-chevron-right"></i>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

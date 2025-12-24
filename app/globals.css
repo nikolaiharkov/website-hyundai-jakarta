@@ -2,22 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Override default Next.js dark mode styles
-  Hapus semua konten default dan ganti dengan reset dasar ini
-*/
-
 :root {
-  --foreground-rgb: 11, 18, 32;
-  --background-start-rgb: 246, 248, 250;
-  --background-end-rgb: 246, 248, 250;
+  /* Warna Hyundai Resmi */
+  --hyundai-navy: #002c5f;
+  --hyundai-blue: #00aad2;
+  --text-dark: #333333;
+  --bg-light: #ffffff;
+  --bg-sand: #f8f9fa; /* Abu sangat muda untuk selingan */
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-start-rgb));
+  background-color: var(--bg-light) !important;
+  color: var(--text-dark) !important;
+  font-family: 'Inter', sans-serif;
 }
 
-/* Memastikan tidak ada transisi warna saat user mengganti mode di device */
-* {
-  transition: none !important;
+/* Paksa mode terang */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--bg-light) !important;
+    color: var(--text-dark) !important;
+  }
+}
+
+/* Utility Classes untuk Kontras Tinggi */
+.btn-primary {
+  background-color: var(--hyundai-blue);
+  color: white;
+  font-weight: 700;
+  transition: all 0.3s;
+}
+.btn-primary:hover {
+  background-color: var(--hyundai-navy);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -10px rgba(0, 44, 95, 0.5);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 2px solid var(--hyundai-navy);
+  color: var(--hyundai-navy);
+  font-weight: 700;
+  transition: all 0.3s;
+}
+.btn-secondary:hover {
+  background-color: var(--hyundai-navy);
+  color: white;
+}
+
+/* Background Showroom dengan Overlay Gelap agar teks putih terbaca */
+.bg-hero-showroom {
+  background: linear-gradient(to right, rgba(0, 44, 95, 0.95), rgba(0, 44, 95, 0.8)), url('/assets/backgroud/hyundai-simprug.jpeg');
+  background-size: cover;
+  background-position: center;
 }
