@@ -25,8 +25,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* FIX: Menggunakan tag <script> biasa (bukan next/script)
            untuk memastikan urutan eksekusi yang benar (Synchronous).
         */}
-        <script src="https://cdn.tailwindcss.com"></script>
-
         <script dangerouslySetInnerHTML={{
           __html: `
             tailwind.config = {

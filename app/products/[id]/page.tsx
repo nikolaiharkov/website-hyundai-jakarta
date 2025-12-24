@@ -1,68 +1,126 @@
-import { PRODUCTS } from "../../../lib/products";
-import { SITE_CONFIG } from "../../../lib/config";
+"use client";
+
+import { useParams, notFound } from "next/navigation";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { PRODUCTS } from "../../../lib/products";
+import { DETAILED_PRODUCT_INFO } from "../../../lib/productData";
+import { SITE_CONFIG } from "../../../lib/config";
 
-export default function ProductDetailPage({ params }: { params: { id: string } }) {
-  const product = PRODUCTS.find((p) => p.id === params.id);
+export default function ProductDetailPage() {
+  const { id } = useParams();
+  const product = PRODUCTS.find((p) => p.id === id);
+  const details = DETAILED_PRODUCT_INFO[id as string];
 
-  if (!product) {
-    notFound();
-  }
+  if (!product) return notFound();
 
-  const waLink = `${SITE_CONFIG.WHATSAPP_LINK}?text=Halo Alfried, saya tertarik dengan Hyundai ${product.name}. Mohon info promonya.`;
+  // Data Fallback jika detail belum ada di lib/productData.ts
+  const displayDetails = details || {
+    promo: "Promo Harga Nego & Diskon Maksimal",
+    tagline: "Proses Cepat, Data Dibantu Sampai Approve",
+    features: ["Teknologi Bluelink", "Hyundai SmartSense", "Kabin Premium"],
+    specs: { "Layanan": "Unit Ready Stok & Siap Kirim" }
+  };
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <section className="relative pt-24 pb-12 bg-white lg:pt-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Gallery Mockup */}
-            <div className="space-y-4">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-gray-100 aspect-[4/3]">
-                <img src={product.image} alt={product.name} className="w-full h-full object-contain p-8" />
-              </div>
+    <div className="bg-hyundai-light min-h-screen pb-20">
+      {/* HEADER SECTION DENGAN OVERLAY BIRU */}
+      <section className="relative pt-32 pb-24 bg-hyundai-primary overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img src="/assets/backgroud/hyundai-simprug.jpeg" className="w-full h-full object-cover opacity-30" alt="BG" />
+          <div className="absolute inset-0 bg-gradient-to-r from-hyundai-primary/95 via-hyundai-primary/80 to-transparent"></div>
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center text-white">
+          <div>
+            <span className="bg-blue-400/20 text-blue-200 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest border border-blue-400/30">
+              Hyundai {product.category}
+            </span>
+            <h1 className="text-4xl md:text-6xl font-black mt-6 mb-4 leading-tight">
+              {product.name}
+            </h1>
+            <p className="text-xl text-blue-300 font-bold mb-8">{displayDetails.promo}</p>
+            <div className="flex flex-wrap gap-4">
+              <a href={`${SITE_CONFIG.WHATSAPP_LINK}?text=Halo Alfried, saya ingin info promo ${product.name}`}
+                 className="bg-hyundai-wa hover:brightness-105 text-white px-8 py-4 rounded-xl font-bold transition shadow-lg flex items-center gap-3">
+                <i className="fa-brands fa-whatsapp text-2xl"></i> Minta Penawaran
+              </a>
+              <Link href="/simulasi-kredit" className="bg-white/10 border border-white/20 hover:bg-white/20 px-8 py-4 rounded-xl font-bold backdrop-blur-md transition">
+                Simulasi Kredit
+              </Link>
             </div>
-
-            {/* Info */}
-            <div>
-              <span className="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">{product.category}</span>
-              <h1 className="text-4xl font-bold text-gray-900 mt-4 mb-2">Hyundai {product.name}</h1>
-              <p className="text-3xl font-bold text-hyundai-primary mb-8">{product.price}</p>
-
-              <div className="prose text-gray-600 mb-8 text-sm leading-relaxed">
-                <p>Nikmati kecanggihan berkendara dengan {product.name}. Dilengkapi dengan teknologi terbaru Hyundai untuk kenyamanan dan keamanan keluarga Anda.</p>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a href={waLink} className="flex-1 text-center bg-hyundai-wa text-white px-6 py-3.5 rounded-xl font-bold hover:brightness-110 shadow-lg">
-                  Minta Penawaran
-                </a>
-                <Link href="/simulasi-kredit" className="flex-1 text-center bg-white border border-gray-300 text-gray-700 px-6 py-3.5 rounded-xl font-bold hover:bg-gray-50">
-                  Hitung Kredit
-                </Link>
-              </div>
-            </div>
+          </div>
+          <div className="hidden lg:block">
+            <img src={product.image} alt={product.name} className="w-full drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform hover:scale-105 transition-transform duration-700" />
           </div>
         </div>
       </section>
 
-      {/* Specs Table Mockup */}
-      <section className="py-16 bg-hyundai-light">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-hyundai-primary mb-8 text-center">Spesifikasi Utama</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-              <h3 className="font-bold text-lg mb-4 text-blue-500">Performa</h3>
-              <p className="text-sm text-gray-600">Mesin efisien dengan transmisi responsif untuk pengalaman berkendara halus.</p>
+      {/* DETAIL CONTENT SECTION */}
+      <section className="max-w-7xl mx-auto px-6 -mt-10 relative z-20">
+        <div className="grid lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2 space-y-8">
+
+            {/* Tabel Harga Varian (Jika ada, seperti Santa Fe) */}
+            {displayDetails.variants && (
+              <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100">
+                <h2 className="text-2xl font-bold text-hyundai-primary mb-8 flex items-center gap-3">
+                  <i className="fa-solid fa-list-ul text-hyundai-secondary"></i> Daftar Varian & Harga
+                </h2>
+                <div className="overflow-hidden border border-gray-100 rounded-2xl">
+                  {displayDetails.variants.map((v: any, idx: number) => (
+                    <div key={idx} className="grid grid-cols-2 p-5 border-b last:border-0 even:bg-gray-50">
+                      <span className="font-bold text-gray-700 uppercase text-sm">{v.name}</span>
+                      <span className="text-hyundai-primary font-black text-right">{v.price}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Fitur Utama */}
+            <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100">
+              <h2 className="text-2xl font-bold text-hyundai-primary mb-8">Fitur Unggulan</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {displayDetails.features.map((f: string, i: number) => (
+                  <div key={i} className="p-4 bg-hyundai-light rounded-xl text-center border border-gray-100">
+                    <i className="fa-solid fa-circle-check text-hyundai-secondary mb-3"></i>
+                    <p className="font-bold text-[11px] uppercase tracking-tight">{f}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-              <h3 className="font-bold text-lg mb-4 text-blue-500">SmartSense</h3>
-              <p className="text-sm text-gray-600">Fitur keselamatan aktif untuk melindungi Anda di setiap perjalanan.</p>
+
+            {/* Spesifikasi Teknis */}
+            <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100">
+              <h2 className="text-2xl font-bold text-hyundai-primary mb-8">Spesifikasi</h2>
+              <div className="space-y-4">
+                {Object.entries(displayDetails.specs).map(([label, value]: any) => (
+                  <div key={label} className="flex justify-between items-center py-4 border-b border-gray-50 last:border-0">
+                    <span className="text-gray-400 font-bold uppercase text-[10px] tracking-widest">{label}</span>
+                    <span className="text-hyundai-primary font-bold text-sm text-right">{value}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-              <h3 className="font-bold text-lg mb-4 text-blue-500">Kenyamanan</h3>
-              <p className="text-center md:text-left text-sm text-gray-600">Kabin lapang dengan material premium dan fitur hiburan mutakhir.</p>
+          </div>
+
+          {/* Sidebar Keuntungan */}
+          <div className="space-y-8">
+            <div className="bg-hyundai-primary p-10 rounded-3xl text-white shadow-2xl relative overflow-hidden">
+              <i className="fa-solid fa-shield-halved absolute -right-4 -bottom-4 text-9xl opacity-10 rotate-12"></i>
+              <h3 className="text-xl font-bold mb-8 border-b border-white/20 pb-4">Keuntungan Pembelian</h3>
+              <ul className="space-y-5">
+                {[
+                  "Cash, Kredit, Tukar Tambah, atau COP",
+                  "Data & BI Checking dibantu sampai Approve",
+                  "Layanan Home Test Drive 24 Jam",
+                  "Bonus Aksesoris Lengkap & Diskon Maksimal"
+                ].map((text, i) => (
+                  <li key={i} className="flex gap-4 items-start text-sm text-blue-100 font-light">
+                    <i className="fa-solid fa-check-circle text-blue-400 mt-1"></i>
+                    <span>{text}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

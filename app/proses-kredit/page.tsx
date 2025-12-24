@@ -31,7 +31,7 @@ export default function ProsesKreditPage() {
         <div className="grid md:grid-cols-5 gap-4">
           {steps.map((step) => (
             <div key={step.n} className="bg-white p-8 rounded-xl border border-gray-100 shadow-xl flex flex-col items-center text-center group hover:bg-hyundai-primary transition-all duration-500">
-              <span className="text-4xl font-black text-hyundai-primary/10 group-hover:text-blue-300 transition-colors mb-4">{step.n}</span>
+              <span className="text-4xl font-black text-hyundai-primary group-hover:text-blue-300 transition-colors mb-4">{step.n}</span>
               <h3 className="text-[11px] font-black text-hyundai-primary group-hover:text-white uppercase tracking-widest mb-4">{step.title}</h3>
               <p className="text-[11px] text-gray-500 group-hover:text-blue-100 font-medium leading-relaxed">{step.desc}</p>
             </div>

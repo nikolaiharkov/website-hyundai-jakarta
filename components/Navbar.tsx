@@ -61,7 +61,7 @@ export default function Navbar() {
               <span className="text-[10px] text-gray-400 uppercase tracking-wide group-hover:text-hyundai-primary">Hubungi Kami</span>
               <span className="font-bold text-hyundai-primary text-lg group-hover:underline tracking-wide">
                 <i className="fa-solid fa-phone mr-2"></i>
-                {SITE_CONFIG.WHATSAPP_NUMBER.replace(/(\d{4})(\d{4})(\d{3})/, '$1-$2-$3')}
+                {SITE_CONFIG.WHATSAPP_NUMBER2.replace(/(\d{4})(\d{4})(\d{3})/, '$1-$2-$3')}
               </span>
             </a>
           </div>

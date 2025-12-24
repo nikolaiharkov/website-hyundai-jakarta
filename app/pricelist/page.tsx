@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import { PRODUCTS } from "../../lib/products";
 import { SITE_CONFIG } from "../../lib/config";
+import Link from "next/link";
 
 export default function PricelistPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -89,9 +90,12 @@ export default function PricelistPage() {
                     <p className="text-[9px] text-gray-400 uppercase font-bold mb-1">Harga Mulai</p>
                     <p className="text-lg font-black text-hyundai-primary">{product.price}</p>
                   </div>
-                  <a href={SITE_CONFIG.WHATSAPP_LINK} className="w-10 h-10 bg-hyundai-primary text-white rounded-full flex items-center justify-center hover:bg-hyundai-secondary transition-colors">
+                  <Link
+                    href={`/products/${product.id}`}
+                    className="w-10 h-10 bg-hyundai-primary text-white rounded-full flex items-center justify-center hover:bg-hyundai-secondary transition-colors"
+                  >
                     <i className="fa-solid fa-arrow-right"></i>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

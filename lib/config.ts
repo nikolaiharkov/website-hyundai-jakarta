@@ -11,6 +11,7 @@ export const SITE_CONFIG = {
   ICON_PATH: "/assets/logo/favicon.ico", //
 
   WHATSAPP_NUMBER: "628996936156", //
+  WHATSAPP_NUMBER2: "08996936156",
   WHATSAPP_LINK: "https://wa.me/628996936156", //
   EMAIL: "hyundaisimprugalfried@gmail.com", //
   SHOWROOM_MAPS_URL: "https://maps.app.goo.gl/YourLocation", //

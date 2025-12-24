@@ -21,7 +21,6 @@ export default function HomePage() {
             <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 pr-6 pl-2 py-2 rounded-full mb-6">
               <img src={SITE_CONFIG.SALES_PHOTO_PATH} alt="Sales" className="w-10 h-10 rounded-full object-cover border-2 border-white" />
               <div className="text-left leading-tight">
-                {/* PERBAIKAN: Menghapus .split(' ')[0] agar nama tampil lengkap */}
                 <p className="font-bold text-sm text-white">{SITE_CONFIG.SALES_NAME}</p>
                 <p className="text-[11px] text-blue-200 uppercase tracking-wider">{SITE_CONFIG.SALES_TITLE}</p>
               </div>
@@ -36,7 +35,7 @@ export default function HomePage() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <a href={SITE_CONFIG.WHATSAPP_LINK} className="flex justify-center items-center gap-3 bg-white text-hyundai-primary px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition shadow-lg text-lg">
-                <i className="fa-brands fa-whatsapp text-2xl"></i> Hubungi Kami
+                <i className="fa-brands fa-whatsapp text-2xl"></i> Hubungi Sales
               </a>
               <Link href="/pricelist" className="flex justify-center items-center gap-3 bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition text-lg backdrop-blur-sm">
                 <i className="fa-solid fa-tags"></i> Lihat Pricelist
@@ -54,18 +53,19 @@ export default function HomePage() {
             <p className="text-gray-500 mt-2">Layanan standar showroom resmi dengan sentuhan personal.</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
                 { title: "Consultant Berpengalaman", icon: "fa-user-tie", desc: "Rekomendasi unit terbaik sesuai kebutuhan dan budget Anda." },
                 { title: "Harga & Diskon Terbaik", icon: "fa-tags", desc: "Jaminan penawaran termurah dengan bonus aksesoris maksimal." },
-                { title: "Layanan Delivery", icon: "fa-truck-fast", desc: "Unit diantar langsung ke rumah Anda dengan aman dan bersih." }
+                { title: "Layanan Delivery", icon: "fa-truck-fast", desc: "Unit diantar langsung ke rumah Anda dengan aman dan bersih." },
+                { title: "Free Test Drive", icon: "fa-car-side", desc: "Layanan test drive fleksibel di showroom kami atau unit kami antar langsung ke rumah Anda." }
             ].map((item, idx) => (
                 <div key={idx} className="p-8 rounded-2xl bg-hyundai-light hover:shadow-xl transition duration-300 border border-transparent hover:border-hyundai-secondary/20 group">
                     <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center text-hyundai-secondary shadow-sm mb-6 group-hover:bg-hyundai-primary group-hover:text-white transition text-2xl">
                         <i className={`fa-solid ${item.icon}`}></i>
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
-                    <p className="text-gray-600">{item.desc}</p>
+                    <p className="text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
             ))}
           </div>
@@ -97,7 +97,7 @@ export default function HomePage() {
                   <div className="mt-auto">
                     <p className="text-sm text-gray-500">Harga Mulai</p>
                     <p className="text-xl font-bold text-hyundai-primary mb-6">{product.price}</p>
-                    <Link href="/pricelist" className="block w-full text-center py-3 rounded-xl bg-hyundai-secondary text-white font-bold hover:bg-hyundai-primary transition shadow-md">
+                    <Link href={`/products/${product.id}`} className="block w-full text-center py-3 rounded-xl bg-hyundai-secondary text-white font-bold hover:bg-hyundai-primary transition shadow-md">
                       Lihat Detail
                     </Link>
                   </div>

@@ -96,9 +96,9 @@ export default function KontakPage() {
             </h3>
             <div className="rounded-2xl overflow-hidden shadow-lg border-4 border-white">
               <iframe
-                src="https://googleusercontent.com/maps.google.com/1"
-                width="100%"
-                height="350"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.239413239436!2d106.78803860000001!3d-6.2321374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f1a03006a3c3%3A0xb287e82f5723b22c!2sHyundai%20Simprug%20Official!5e0!3m2!1sid!2sid!4v1766605076750!5m2!1sid!2sid"
+                width="100%" // Disarankan tetap 100% agar responsif di semua ukuran layar
+                height="450"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
