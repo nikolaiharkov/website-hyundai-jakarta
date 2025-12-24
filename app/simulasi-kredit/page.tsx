@@ -16,161 +16,80 @@ export default function SimulasiKreditPage() {
 
   const handleSendWA = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.carType || !formData.fullName || !formData.phone) {
-      alert("Mohon lengkapi data utama.");
-      return;
-    }
-
-    const message = `Halo Alfried, saya ingin *Simulasi Kredit*:\n\n` +
-      `- Tipe Mobil: ${formData.carType}\n` +
-      `- Tenor: ${formData.tenor}\n` +
-      `- Uang Muka: ${formData.dp || "-"}\n` +
-      `- Nama: ${formData.fullName}\n` +
-      `- Kota: ${formData.city || "-"}\n` +
-      `- No. HP: ${formData.phone}`;
-
-    window.open(`${SITE_CONFIG.WHATSAPP_LINK}?text=${encodeURIComponent(message)}`, "_blank");
+    const msg = `Halo Alfried, saya ingin simulasi kredit:\n\n- Mobil: ${formData.carType}\n- Tenor: ${formData.tenor}\n- DP: ${formData.dp}\n- Nama: ${formData.fullName}\n- Kota: ${formData.city}\n- HP: ${formData.phone}`;
+    window.open(`${SITE_CONFIG.WHATSAPP_LINK}?text=${encodeURIComponent(msg)}`, "_blank");
   };
 
   return (
-    <div className="bg-hyundai-sand min-h-screen">
-      {/* HEADER: Background Navy Gelap + Teks Putih */}
-      <section className="relative pt-32 pb-24 overflow-hidden">
+    <div className="bg-hyundai-light min-h-screen pb-20">
+      {/* Header dengan Overlay Gradient (Sesuai Referensi) */}
+      <section className="relative pt-32 pb-20 bg-hyundai-primary">
         <div className="absolute inset-0 z-0">
-          <img src="/assets/backgroud/hyundai-simprug.jpeg" alt="Showroom" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-hyundai-navy/90 backdrop-blur-sm"></div>
+          <img src="/assets/backgroud/hyundai-simprug.jpeg" className="w-full h-full object-cover opacity-50" alt="Background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-hyundai-primary/90 to-hyundai-primary/70"></div>
         </div>
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center text-white">
-          <div className="inline-block px-4 py-1 border border-hyundai-blue text-hyundai-blue text-[10px] font-black uppercase tracking-[0.3em] mb-4 bg-black/20">
-            <i className="fa-solid fa-calculator mr-2"></i> Perhitungan Resmi
-          </div>
-          <h1 className="text-4xl md:text-6xl font-black tracking-tighter uppercase">Simulasi Kredit</h1>
-          <p className="text-gray-300 mt-4 max-w-2xl mx-auto font-light">
-            Dapatkan hitungan cicilan transparan dan promo bunga rendah khusus bulan ini.
-          </p>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center text-white">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">SIMULASI KREDIT</h1>
+          <p className="text-blue-100">Dapatkan hitungan cicilan terbaik sesuai budget Anda.</p>
         </div>
       </section>
 
-      {/* FORM SECTION */}
-      <section className="py-16 max-w-4xl mx-auto px-6 -mt-10 relative z-20">
-        <div className="bg-white shadow-2xl rounded-sm overflow-hidden flex flex-col md:flex-row border border-gray-200">
-
-          {/* Info Side (Navy Background) */}
-          <div className="md:w-1/3 bg-hyundai-navy p-10 text-white flex flex-col justify-center border-r border-white/10">
-            <h3 className="text-xs font-black uppercase tracking-[0.3em] text-hyundai-blue mb-8">
-              <i className="fa-solid fa-circle-info mr-2"></i> Benefit
-            </h3>
-            <ul className="space-y-6">
-              <li className="flex gap-4 items-start">
-                <i className="fa-solid fa-percent text-hyundai-blue mt-1"></i>
-                <p className="text-[11px] font-bold uppercase tracking-widest">Bunga Kompetitif mulai 0%</p>
-              </li>
-              <li className="flex gap-4 items-start">
-                <i className="fa-solid fa-wallet text-hyundai-blue mt-1"></i>
-                <p className="text-[11px] font-bold uppercase tracking-widest">DP Ringan Mulai 10%</p>
-              </li>
-              <li className="flex gap-4 items-start">
-                <i className="fa-solid fa-file-circle-check text-hyundai-blue mt-1"></i>
-                <p className="text-[11px] font-bold uppercase tracking-widest">Approve Dibantu 99%</p>
-              </li>
-            </ul>
+      <div className="max-w-4xl mx-auto px-6 -mt-10 relative z-20">
+        <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-100">
+          <div className="bg-hyundai-primary p-4 text-center">
+            <p className="text-white text-sm font-bold uppercase tracking-widest">Formulir Pengajuan</p>
           </div>
 
-          {/* Form Side (White Background, Text Navy) */}
-          <form onSubmit={handleSendWA} className="flex-1 p-10 lg:p-14 space-y-6">
+          <form onSubmit={handleSendWA} className="p-8 lg:p-12 space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
-
               {/* Tipe Mobil */}
-              <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-hyundai-navy flex items-center gap-2">
-                  <i className="fa-solid fa-car"></i> Tipe Mobil
-                </label>
-                <select
-                  required
-                  onChange={(e) => setFormData({...formData, carType: e.target.value})}
-                  className="w-full bg-hyundai-sand border border-transparent focus:border-hyundai-blue focus:bg-white p-4 text-[11px] font-bold uppercase outline-none transition-all text-hyundai-dark"
-                >
-                  <option value="">PILIH MODEL</option>
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-2"><i className="fa-solid fa-car mr-1"></i> Tipe Mobil</label>
+                <select onChange={(e) => setFormData({...formData, carType: e.target.value})} className="w-full border-gray-300 rounded-lg p-3 text-sm focus:ring-hyundai-primary focus:border-hyundai-primary bg-gray-50">
+                  <option value="">Pilih Model</option>
                   {PRODUCTS.map(p => <option key={p.id} value={p.name}>{p.name}</option>)}
                 </select>
               </div>
 
               {/* Tenor */}
-              <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-hyundai-navy flex items-center gap-2">
-                  <i className="fa-regular fa-calendar-days"></i> Tenor
-                </label>
-                <select
-                  onChange={(e) => setFormData({...formData, tenor: e.target.value})}
-                  className="w-full bg-hyundai-sand border border-transparent focus:border-hyundai-blue focus:bg-white p-4 text-[11px] font-bold uppercase outline-none transition-all text-hyundai-dark"
-                >
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-2"><i className="fa-regular fa-clock mr-1"></i> Tenor</label>
+                <select onChange={(e) => setFormData({...formData, tenor: e.target.value})} className="w-full border-gray-300 rounded-lg p-3 text-sm focus:ring-hyundai-primary focus:border-hyundai-primary bg-gray-50">
                   {["1 Tahun", "2 Tahun", "3 Tahun", "4 Tahun", "5 Tahun", "6 Tahun"].map(t => <option key={t} value={t}>{t}</option>)}
                 </select>
               </div>
 
-              {/* Uang Muka */}
-              <div className="space-y-2 md:col-span-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-hyundai-navy flex items-center gap-2">
-                  <i className="fa-solid fa-money-bill-wave"></i> Uang Muka (DP)
-                </label>
-                <input
-                  type="text"
-                  placeholder="CONTOH: 50 JUTA"
-                  onChange={(e) => setFormData({...formData, dp: e.target.value})}
-                  className="w-full bg-hyundai-sand border border-transparent focus:border-hyundai-blue focus:bg-white p-4 text-[11px] font-bold uppercase outline-none transition-all text-hyundai-dark placeholder:text-gray-400"
-                />
+              {/* DP */}
+              <div className="md:col-span-2">
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-2"><i className="fa-solid fa-money-bill-wave mr-1"></i> Uang Muka (DP)</label>
+                <input type="text" placeholder="Contoh: 50 Juta" onChange={(e) => setFormData({...formData, dp: e.target.value})} className="w-full border-gray-300 rounded-lg p-3 text-sm focus:ring-hyundai-primary focus:border-hyundai-primary bg-gray-50" />
               </div>
 
-              {/* Nama Lengkap */}
-              <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-hyundai-navy flex items-center gap-2">
-                  <i className="fa-solid fa-user"></i> Nama Lengkap
-                </label>
-                <input
-                  type="text" required
-                  placeholder="NAMA SESUAI KTP"
-                  onChange={(e) => setFormData({...formData, fullName: e.target.value})}
-                  className="w-full bg-hyundai-sand border border-transparent focus:border-hyundai-blue focus:bg-white p-4 text-[11px] font-bold uppercase outline-none transition-all text-hyundai-dark placeholder:text-gray-400"
-                />
+              {/* Nama */}
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-2"><i className="fa-solid fa-user mr-1"></i> Nama Lengkap</label>
+                <input type="text" required onChange={(e) => setFormData({...formData, fullName: e.target.value})} className="w-full border-gray-300 rounded-lg p-3 text-sm focus:ring-hyundai-primary focus:border-hyundai-primary bg-gray-50" />
               </div>
 
-              {/* Asal Kota */}
-              <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-hyundai-navy flex items-center gap-2">
-                  <i className="fa-solid fa-location-dot"></i> Kota / Daerah
-                </label>
-                <input
-                  type="text"
-                  placeholder="DOMISILI"
-                  onChange={(e) => setFormData({...formData, city: e.target.value})}
-                  className="w-full bg-hyundai-sand border border-transparent focus:border-hyundai-blue focus:bg-white p-4 text-[11px] font-bold uppercase outline-none transition-all text-hyundai-dark placeholder:text-gray-400"
-                />
+              {/* Kota */}
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-2"><i className="fa-solid fa-location-dot mr-1"></i> Kota / Daerah</label>
+                <input type="text" onChange={(e) => setFormData({...formData, city: e.target.value})} className="w-full border-gray-300 rounded-lg p-3 text-sm focus:ring-hyundai-primary focus:border-hyundai-primary bg-gray-50" />
               </div>
 
-              {/* No. HP */}
-              <div className="space-y-2 md:col-span-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-hyundai-navy flex items-center gap-2">
-                  <i className="fa-brands fa-whatsapp"></i> No. HP / WhatsApp
-                </label>
-                <input
-                  type="tel" required
-                  placeholder="0812XXXXXX"
-                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                  className="w-full bg-hyundai-sand border border-transparent focus:border-hyundai-blue focus:bg-white p-4 text-[11px] font-bold uppercase outline-none transition-all text-hyundai-dark placeholder:text-gray-400"
-                />
+              {/* HP */}
+              <div className="md:col-span-2">
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-2"><i className="fa-brands fa-whatsapp mr-1"></i> No. WhatsApp</label>
+                <input type="tel" required placeholder="0812..." onChange={(e) => setFormData({...formData, phone: e.target.value})} className="w-full border-gray-300 rounded-lg p-3 text-sm focus:ring-hyundai-primary focus:border-hyundai-primary bg-gray-50" />
               </div>
             </div>
 
-            {/* Tombol Aksi - Warna Navy Solid (Kontras Tinggi) */}
-            <button
-              type="submit"
-              className="w-full bg-hyundai-navy text-white py-5 font-black uppercase tracking-[0.3em] text-[11px] hover:bg-hyundai-blue transition-all shadow-xl flex items-center justify-center gap-3"
-            >
-              <i className="fa-solid fa-paper-plane"></i> Hitung Cicilan
+            <button type="submit" className="w-full bg-hyundai-primary text-white py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-hyundai-secondary transition shadow-lg flex justify-center items-center gap-2">
+              <i className="fa-solid fa-paper-plane"></i> Hitung Sekarang
             </button>
           </form>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

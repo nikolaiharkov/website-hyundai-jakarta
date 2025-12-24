@@ -3,56 +3,21 @@
 @tailwind utilities;
 
 :root {
-  /* Warna Hyundai Resmi */
-  --hyundai-navy: #002c5f;
-  --hyundai-blue: #00aad2;
-  --text-dark: #333333;
-  --bg-light: #ffffff;
-  --bg-sand: #f8f9fa; /* Abu sangat muda untuk selingan */
+  --hyundai-primary: #012C68;
+  --hyundai-light: #F6F8FA;
+  --hyundai-dark: #0B1220;
 }
 
+/* Paksa Background agar tidak putih polos */
 body {
-  background-color: var(--bg-light) !important;
-  color: var(--text-dark) !important;
-  font-family: 'Inter', sans-serif;
+  background-color: var(--hyundai-light) !important;
+  color: var(--hyundai-dark) !important;
 }
 
-/* Paksa mode terang */
+/* Mematikan efek dark mode bawaan browser */
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: var(--bg-light) !important;
-    color: var(--text-dark) !important;
+    background-color: #F6F8FA !important;
+    color: #0B1220 !important;
   }
-}
-
-/* Utility Classes untuk Kontras Tinggi */
-.btn-primary {
-  background-color: var(--hyundai-blue);
-  color: white;
-  font-weight: 700;
-  transition: all 0.3s;
-}
-.btn-primary:hover {
-  background-color: var(--hyundai-navy);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px -10px rgba(0, 44, 95, 0.5);
-}
-
-.btn-secondary {
-  background-color: transparent;
-  border: 2px solid var(--hyundai-navy);
-  color: var(--hyundai-navy);
-  font-weight: 700;
-  transition: all 0.3s;
-}
-.btn-secondary:hover {
-  background-color: var(--hyundai-navy);
-  color: white;
-}
-
-/* Background Showroom dengan Overlay Gelap agar teks putih terbaca */
-.bg-hero-showroom {
-  background: linear-gradient(to right, rgba(0, 44, 95, 0.95), rgba(0, 44, 95, 0.8)), url('/assets/backgroud/hyundai-simprug.jpeg');
-  background-size: cover;
-  background-position: center;
 }
