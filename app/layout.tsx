@@ -16,6 +16,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     /* Menambahkan suppressHydrationWarning untuk menghindari error atribut yang disuntikkan browser/plugin */
     <html lang="id" style={{ colorScheme: 'light' }} suppressHydrationWarning>
       <head>
+        {/* HARKOVNET ANALYTICS SCRIPT */}
+        <script defer src="https://analytics.harkovnet.biz.id/script.js" data-website-id="810454d3-d0dd-456f-95e5-1b0256297b7a"></script>
+
         {/* FontAwesome CDN */}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 

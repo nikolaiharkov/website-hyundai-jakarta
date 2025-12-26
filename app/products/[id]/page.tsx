@@ -2,6 +2,7 @@
 
 import { useParams, notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { PRODUCTS } from "../../../lib/products";
 import { DETAILED_PRODUCT_INFO } from "../../../lib/productData";
 import { SITE_CONFIG } from "../../../lib/config";
@@ -13,7 +14,6 @@ export default function ProductDetailPage() {
 
   if (!product) return notFound();
 
-  // Data Fallback jika detail belum ada di lib/productData.ts
   const displayDetails = details || {
     promo: "Promo Harga Nego & Diskon Maksimal",
     tagline: "Proses Cepat, Data Dibantu Sampai Approve",
@@ -23,10 +23,16 @@ export default function ProductDetailPage() {
 
   return (
     <div className="bg-hyundai-light min-h-screen pb-20">
-      {/* HEADER SECTION DENGAN OVERLAY BIRU */}
       <section className="relative pt-32 pb-24 bg-hyundai-primary overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src="/assets/backgroud/hyundai-simprug.jpeg" className="w-full h-full object-cover opacity-30" alt="BG" />
+          {/* OPTIMASI: Background Header dengan priority */}
+          <Image
+            src="/assets/backgroud/hyundai-simprug.jpeg"
+            fill
+            className="object-cover opacity-30"
+            alt="Showroom Hyundai Background"
+            priority
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-hyundai-primary/95 via-hyundai-primary/80 to-transparent"></div>
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center text-white">
@@ -48,18 +54,22 @@ export default function ProductDetailPage() {
               </Link>
             </div>
           </div>
-          <div className="hidden lg:block">
-            <img src={product.image} alt={product.name} className="w-full drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform hover:scale-105 transition-transform duration-700" />
+          <div className="hidden lg:block relative h-[300px] xl:h-[400px]">
+            {/* OPTIMASI: Gambar Unit Mobil dengan object-contain agar tidak terpotong */}
+            <Image
+              src={product.image}
+              alt={product.name}
+              fill
+              className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform hover:scale-105 transition-transform duration-700"
+              sizes="50vw"
+            />
           </div>
         </div>
       </section>
 
-      {/* DETAIL CONTENT SECTION */}
       <section className="max-w-7xl mx-auto px-6 -mt-10 relative z-20">
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-8">
-
-            {/* Tabel Harga Varian (Jika ada, seperti Santa Fe) */}
             {displayDetails.variants && (
               <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100">
                 <h2 className="text-2xl font-bold text-hyundai-primary mb-8 flex items-center gap-3">
@@ -76,7 +86,6 @@ export default function ProductDetailPage() {
               </div>
             )}
 
-            {/* Fitur Utama */}
             <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100">
               <h2 className="text-2xl font-bold text-hyundai-primary mb-8">Fitur Unggulan</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -89,7 +98,6 @@ export default function ProductDetailPage() {
               </div>
             </div>
 
-            {/* Spesifikasi Teknis */}
             <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100">
               <h2 className="text-2xl font-bold text-hyundai-primary mb-8">Spesifikasi</h2>
               <div className="space-y-4">
@@ -103,7 +111,6 @@ export default function ProductDetailPage() {
             </div>
           </div>
 
-          {/* Sidebar Keuntungan */}
           <div className="space-y-8">
             <div className="bg-hyundai-primary p-10 rounded-3xl text-white shadow-2xl relative overflow-hidden">
               <i className="fa-solid fa-shield-halved absolute -right-4 -bottom-4 text-9xl opacity-10 rotate-12"></i>

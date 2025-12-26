@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Image from "next/image";
 import { PRODUCTS } from "../../lib/products";
 import { SITE_CONFIG } from "../../lib/config";
 import Link from "next/link";
@@ -26,11 +27,16 @@ export default function PricelistPage() {
 
   return (
     <div className="bg-hyundai-light min-h-screen">
-      {/* HEADER DENGAN BLUE OVERLAY */}
       <section className="relative pt-32 pb-24 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src="/assets/backgroud/hyundai-simprug.jpeg" alt="Background" className="w-full h-full object-cover" />
-          {/* Overlay Biru (Sesuai Referensi Home) */}
+          {/* OPTIMASI: Background Header Pricelist */}
+          <Image
+            src="/assets/backgroud/hyundai-simprug.jpeg"
+            alt="Pricelist Background"
+            fill
+            className="object-cover"
+            priority
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-hyundai-primary/95 via-hyundai-primary/80 to-transparent"></div>
         </div>
         <div className="max-w-[1400px] mx-auto px-6 relative z-10 text-white">
@@ -41,7 +47,6 @@ export default function PricelistPage() {
         </div>
       </section>
 
-      {/* FILTER BAR DENGAN HOVER BIRU */}
       <section className="py-8 bg-white border-b border-gray-200 sticky top-20 z-40 shadow-sm">
         <div className="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex gap-3 overflow-x-auto pb-2 w-full md:w-auto no-scrollbar">
@@ -73,13 +78,19 @@ export default function PricelistPage() {
         </div>
       </section>
 
-      {/* PRODUCTS LIST */}
       <section className="py-16 max-w-[1400px] mx-auto px-6">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
           {filteredProducts.map((product) => (
             <div key={product.id} className="bg-white group rounded-2xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-2xl transition-all duration-500">
               <div className="p-10 aspect-[16/10] bg-gray-50 relative flex items-center justify-center overflow-hidden">
-                <img src={product.image} alt={product.name} className="w-full object-contain group-hover:scale-110 transition-transform duration-700 relative z-10" />
+                {/* OPTIMASI: Gambar Unit dalam List */}
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  fill
+                  className="object-contain group-hover:scale-110 transition-transform duration-700 relative z-10"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
               </div>
               <div className="p-8 flex-grow flex flex-col">
                 <p className="text-[9px] font-black text-hyundai-accent uppercase tracking-[0.2em] mb-1">{product.category}</p>

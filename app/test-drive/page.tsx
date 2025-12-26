@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { SITE_CONFIG } from "../../lib/config";
 import { PRODUCTS } from "../../lib/products";
 
@@ -15,10 +16,16 @@ export default function TestDrivePage() {
 
   return (
     <div className="bg-hyundai-light min-h-screen pb-20">
-      {/* Header dengan Overlay Gradient */}
       <section className="relative pt-32 pb-24 bg-hyundai-primary text-center text-white">
         <div className="absolute inset-0 z-0">
-          <img src="/assets/backgroud/hyundai-simprug.jpeg" alt="Test Drive" className="w-full h-full object-cover opacity-50" />
+          {/* OPTIMASI: Background Header Test Drive */}
+          <Image
+            src="/assets/backgroud/hyundai-simprug.jpeg"
+            alt="Test Drive Background"
+            fill
+            className="object-cover opacity-50"
+            priority
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-hyundai-primary/90 to-hyundai-primary/70"></div>
         </div>
         <div className="relative z-10 px-6">
@@ -29,11 +36,8 @@ export default function TestDrivePage() {
         </div>
       </section>
 
-      {/* Form Section */}
       <section className="max-w-4xl mx-auto px-6 -mt-10 relative z-20">
         <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-100 flex flex-col md:flex-row">
-
-          {/* Sidebar Info (Biru) */}
           <div className="md:w-1/3 bg-hyundai-primary p-10 text-white">
             <h3 className="text-sm font-bold uppercase tracking-widest mb-8 border-b border-white/20 pb-4">
               <i className="fa-solid fa-list-check mr-2"></i> Langkah Mudah
@@ -54,7 +58,6 @@ export default function TestDrivePage() {
             </ul>
           </div>
 
-          {/* Form Input */}
           <form onSubmit={handleBooking} className="flex-1 p-10 lg:p-12 space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { SITE_CONFIG } from "../lib/config";
 
@@ -31,7 +32,15 @@ export default function Navbar() {
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <Link href="/" className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
-            <img src={SITE_CONFIG.LOGO_PATH} alt="Hyundai Logo" className="h-8 w-auto" />
+            {/* OPTIMASI: Logo dengan fixed dimensions */}
+            <Image
+              src={SITE_CONFIG.LOGO_PATH}
+              alt="Hyundai Logo"
+              width={150}
+              height={32}
+              className="h-8 w-auto"
+              priority
+            />
             <div className="flex flex-col">
               <span className="font-bold text-lg leading-none text-hyundai-primary tracking-tight uppercase">
                 {SITE_CONFIG.SALES_NAME.split(' ')[1]} HYUNDAI

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SITE_CONFIG } from "../lib/config";
 import { PRODUCTS } from "../lib/products";
 
@@ -12,14 +13,31 @@ export default function HomePage() {
       {/* HERO SECTION */}
       <section className="relative pt-20 lg:pt-0 lg:h-screen flex items-center">
         <div className="absolute inset-0 z-0">
-          <img src="/assets/backgroud/hyundai-simprug.jpeg" alt="Hero" className="w-full h-full object-cover object-center" />
+          {/* OPTIMASI: Menggunakan fill, priority untuk LCP, dan object-cover */}
+          <Image
+            src="/assets/backgroud/hyundai-simprug.jpeg"
+            alt="Showroom Hyundai Jakarta"
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-hyundai-primary/95 via-hyundai-primary/80 to-transparent"></div>
         </div>
 
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 w-full py-16 lg:py-0">
           <div className="lg:w-7/12 text-white">
             <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 pr-6 pl-2 py-2 rounded-full mb-6">
-              <img src={SITE_CONFIG.SALES_PHOTO_PATH} alt="Sales" className="w-10 h-10 rounded-full object-cover border-2 border-white" />
+              {/* OPTIMASI: Menggunakan ukuran tetap untuk foto profil */}
+              <div className="relative w-10 h-10 overflow-hidden rounded-full border-2 border-white">
+                <Image
+                  src={SITE_CONFIG.SALES_PHOTO_PATH}
+                  alt={SITE_CONFIG.SALES_NAME}
+                  width={40}
+                  height={40}
+                  className="object-cover"
+                />
+              </div>
               <div className="text-left leading-tight">
                 <p className="font-bold text-sm text-white">{SITE_CONFIG.SALES_NAME}</p>
                 <p className="text-[11px] text-blue-200 uppercase tracking-wider">{SITE_CONFIG.SALES_TITLE}</p>
@@ -89,7 +107,14 @@ export default function HomePage() {
             {featuredProducts.map((product) => (
               <div key={product.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition border border-gray-100 flex flex-col group">
                 <div className="relative h-56 bg-gray-50 overflow-hidden flex items-center justify-center">
-                  <img src={product.image} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                  {/* OPTIMASI: Menggunakan fill dan sizes untuk responsivitas gambar produk */}
+                  <Image
+                    src={product.image}
+                    alt={`Hyundai ${product.name}`}
+                    fill
+                    className="object-cover group-hover:scale-105 transition duration-500"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
                 </div>
                 <div className="p-6 flex-1 flex flex-col">
                   <h3 className="text-2xl font-bold text-gray-900 uppercase">Hyundai {product.name}</h3>
