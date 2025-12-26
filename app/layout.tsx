@@ -19,15 +19,29 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* HARKOVNET ANALYTICS SCRIPT */}
         <script defer src="https://analytics.harkovnet.biz.id/script.js" data-website-id="810454d3-d0dd-456f-95e5-1b0256297b7a"></script>
 
+        {/* META PIXEL CODE */}
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '2245403295939944');
+            fbq('track', 'PageView');
+          `
+        }} />
+
         {/* FontAwesome CDN */}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
         {/* Google Fonts */}
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
-        {/* FIX: Menggunakan tag <script> biasa (bukan next/script)
-           untuk memastikan urutan eksekusi yang benar (Synchronous).
-        */}
+        {/* FIX: Menggunakan tag <script> biasa untuk memastikan urutan eksekusi Synchronous */}
         <script dangerouslySetInnerHTML={{
           __html: `
             tailwind.config = {
@@ -70,6 +84,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         }} />
       </head>
       <body className="antialiased flex flex-col min-h-screen bg-hyundai-light text-hyundai-dark">
+        {/* META PIXEL NOSCRIPT FALLBACK */}
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: 'none' }}
+            src="https://www.facebook.com/tr?id=2245403295939944&ev=PageView&noscript=1"
+            alt=""
+          />
+        </noscript>
+
         <Navbar />
         <main className="flex-grow pt-20">
           {children}
