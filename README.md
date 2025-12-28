@@ -1,36 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Website Sales Hyundai Jakarta
 
-## Getting Started
+Website profil profesional dan katalog produk otomotif yang dirancang khusus untuk Brand Consultant Hyundai (**M. Alfried Taftazani**) di wilayah Jakarta dan sekitarnya. Proyek ini dibangun menggunakan teknologi web modern untuk memastikan performa tinggi, SEO yang optimal, dan pengalaman pengguna yang responsif.
 
-First, run the development server:
+## Deskripsi Singkat
+
+Proyek ini berfungsi sebagai platform pemasaran digital untuk memamerkan jajaran mobil Hyundai (seperti **Stargazer, Creta, IONIQ 5**, dll.). Website ini memfasilitasi calon pembeli untuk melihat spesifikasi detail, promo terbaru, melakukan simulasi kredit, hingga menghubungi sales secara langsung melalui integrasi **WhatsApp**.
+
+## Fitur Utama
+
+- **Katalog Produk Dinamis:** Menampilkan daftar mobil Hyundai lengkap dengan kategori (SUV, MPV, Electric, dll.) dan harga terbaru.
+- **Halaman Detail Produk:** Informasi teknis mendalam mencakup fitur unggulan, spesifikasi mesin, varian harga, hingga penawaran promo khusus per model.
+- **Integrasi Kontak Langsung:** Tombol WhatsApp melayang (*Floating WA*) dan tautan langsung untuk mempermudah konversi pengunjung menjadi prospek.
+- **Sistem Simulasi & Proses Kredit:** Halaman khusus untuk membantu pengguna memahami simulasi cicilan dan persyaratan pengajuan kredit.
+- **Optimasi SEO & Metadata:** Metadata dinamis pada setiap halaman untuk meningkatkan visibilitas di mesin pencari.
+- **Tracking & Analytics:** Integrasi bawaan dengan **Harkovnet Analytics** dan **Meta Pixel** untuk memantau perilaku pengunjung dan efektivitas iklan.
+- **Desain Responsif:** Antarmuka yang dioptimalkan untuk perangkat mobile dan desktop menggunakan **Tailwind CSS**.
+
+## Teknologi & Dependensi
+
+- **Framework Utama:** Next.js **16.1.1** (App Router)
+- **Library UI:** React **19.2.3**
+- **Bahasa Pemrograman:** TypeScript
+- **Styling:** Tailwind CSS **3.4.19**, PostCSS, Autoprefixer
+- **Ikon & Font:** FontAwesome **6.4.0** dan Google Fonts (**Inter**)
+- **Analitik:** Harkovnet Analytics Script & Meta Pixel
+
+## Struktur Proyek
+
+```text
+├── app/                    # Routing Next.js (App Router)
+│   ├── galeri/             # Halaman galeri foto penyerahan/unit
+│   ├── kontak/             # Informasi kontak lengkap
+│   ├── pricelist/          # Daftar harga terbaru
+│   ├── products/[id]/      # Halaman detail produk dinamis berdasarkan ID
+│   ├── proses-kredit/      # Informasi alur pengajuan kredit
+│   ├── simulasi-kredit/    # Kalkulator/informasi simulasi cicilan
+│   ├── test-drive/         # Form/halaman permintaan test drive
+│   ├── layout.tsx          # Layout utama (Navbar, Footer, Analytics)
+│   └── page.tsx            # Landing page utama
+├── components/             # Komponen UI (Navbar, Footer, FloatingWA, dll.)
+├── lib/                    # Manajemen Data & Konfigurasi
+│   ├── config.ts           # Pusat pengaturan identitas sales & dealer
+│   ├── products.ts         # Data dasar katalog produk
+│   └── productData.ts      # Data spesifikasi detail & promo produk
+├── public/                 # File statis (Logo, Foto Produk, Favicon, dll.)
+├── tailwind.config.ts      # Konfigurasi Tailwind CSS
+└── package.json            # Dependensi dan script project
+```
+
+## Konfigurasi
+
+Pusat konfigurasi aplikasi berada di `lib/config.ts`. Anda dapat mengubah informasi sales tanpa menyentuh kode komponen.
+
+Beberapa field yang umum diatur:
+
+- `SALES_NAME`: Nama lengkap tenaga penjual.
+- `WHATSAPP_NUMBER`: Nomor WhatsApp (format internasional, misal: `628...`).
+- `WHATSAPP_LINK`: Tautan langsung menuju chat WhatsApp.
+- `SHOWROOM_MAPS_URL`: Tautan lokasi Google Maps dealer.
+- `HERO_HEADLINE`: Teks utama pada bagian landing page.
+
+> **Catatan:** Pastikan nilai-nilai di atas konsisten dengan identitas sales/dealer agar metadata SEO tetap relevan.
+
+## Cara Instalasi
+
+1) Clone repositori:
+
+```bash
+git clone <repository-url>
+cd website-hyundai-jakarta
+```
+
+2) Install dependensi:
+
+```bash
+npm install
+```
+
+## Cara Menjalankan Aplikasi
+
+### Mode Pengembangan (Development)
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Aplikasi akan berjalan di `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Mode Produksi (Build & Start)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run prod
+# atau secara manual
+npm run build
+npm run start
+```
 
-## Learn More
+## Struktur Data Produk
 
-To learn more about Next.js, take a look at the following resources:
+Aplikasi menggunakan sistem pemetaan **ID** untuk menampilkan detail produk.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **List Produk** (`lib/products.ts`): berisi `id`, `name`, `priceNumeric`, dan `category`.
+- **Detail Produk** (`lib/productData.ts`): menggunakan ID dari list produk (misal: `h-01` untuk Stargazer) untuk menarik data fitur, spesifikasi teknis, dan varian harga.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Contoh pemanggilan data di halaman dinamis:
 
-## Deploy on Vercel
+```ts
+// app/products/[id]/page.tsx
+const productInfo = DETAILED_PRODUCT_INFO[params.id];
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Catatan Tambahan
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Hydration Warning:** Pada `app/layout.tsx`, atribut `suppressHydrationWarning` digunakan pada tag `<html>` untuk menghindari error akibat injeksi skrip analitik atau ekstensi browser.
+- **Dynamic Theme Injection:** Terdapat konfigurasi Tailwind yang disuntikkan langsung via `<script>` di dalam `layout.tsx` untuk memastikan konsistensi warna brand Hyundai secara runtime.
+- **SEO:** Pastikan setiap perubahan pada `SITE_CONFIG` di `lib/config.ts` sesuai dengan identitas sales agar metadata yang dihasilkan tetap relevan untuk pencarian Google.
