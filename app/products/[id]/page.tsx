@@ -1,16 +1,34 @@
-"use client";
-
-import { useParams, notFound } from "next/navigation";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { Metadata } from "next";
 import { PRODUCTS } from "../../../lib/products";
 import { DETAILED_PRODUCT_INFO } from "../../../lib/productData";
 import { SITE_CONFIG } from "../../../lib/config";
 
-export default function ProductDetailPage() {
-  const { id } = useParams();
+interface Props {
+  params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const id = (await params).id;
   const product = PRODUCTS.find((p) => p.id === id);
-  const details = DETAILED_PRODUCT_INFO[id as string];
+  if (!product) return {};
+
+  const details = DETAILED_PRODUCT_INFO[id];
+  return {
+    title: `Hyundai ${product.name} - Harga & Promo Terbaru`,
+    description: details?.tagline || `Dapatkan penawaran terbaik untuk Hyundai ${product.name} di Jakarta. ${details?.promo || ""}`,
+    openGraph: {
+      images: [product.image],
+    },
+  };
+}
+
+export default async function ProductDetailPage({ params }: Props) {
+  const id = (await params).id;
+  const product = PRODUCTS.find((p) => p.id === id);
+  const details = DETAILED_PRODUCT_INFO[id];
 
   if (!product) return notFound();
 
@@ -21,18 +39,32 @@ export default function ProductDetailPage() {
     specs: { "Layanan": "Unit Ready Stok & Siap Kirim" }
   };
 
+  // JSON-LD untuk Produk Spesifik
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": `Hyundai ${product.name}`,
+    "image": `${SITE_CONFIG.DOMAIN}${product.image}`,
+    "description": displayDetails.tagline,
+    "brand": { "@type": "Brand", "name": "Hyundai" },
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "IDR",
+      "price": product.priceNumeric,
+      "availability": "https://schema.org/InStock",
+      "url": `${SITE_CONFIG.DOMAIN}/products/${id}`
+    }
+  };
+
   return (
     <div className="bg-hyundai-light min-h-screen pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
       <section className="relative pt-32 pb-24 bg-hyundai-primary overflow-hidden">
         <div className="absolute inset-0 z-0">
-          {/* OPTIMASI: Background Header dengan priority */}
-          <Image
-            src="/assets/backgroud/hyundai-simprug.jpeg"
-            fill
-            className="object-cover opacity-30"
-            alt="Showroom Hyundai Background"
-            priority
-          />
+          <Image src="/assets/backgroud/hyundai-simprug.jpeg" fill className="object-cover opacity-30" alt="Showroom Hyundai Background" priority />
           <div className="absolute inset-0 bg-gradient-to-r from-hyundai-primary/95 via-hyundai-primary/80 to-transparent"></div>
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center text-white">
@@ -40,9 +72,7 @@ export default function ProductDetailPage() {
             <span className="bg-blue-400/20 text-blue-200 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest border border-blue-400/30">
               Hyundai {product.category}
             </span>
-            <h1 className="text-4xl md:text-6xl font-black mt-6 mb-4 leading-tight">
-              {product.name}
-            </h1>
+            <h1 className="text-4xl md:text-6xl font-black mt-6 mb-4 leading-tight">{product.name}</h1>
             <p className="text-xl text-blue-300 font-bold mb-8">{displayDetails.promo}</p>
             <div className="flex flex-wrap gap-4">
               <a href={`${SITE_CONFIG.WHATSAPP_LINK}?text=Halo Alfried, saya ingin info promo ${product.name}`}
@@ -54,15 +84,8 @@ export default function ProductDetailPage() {
               </Link>
             </div>
           </div>
-          <div className="hidden lg:block relative h-[300px] xl:h-[400px]">
-            {/* OPTIMASI: Gambar Unit Mobil dengan object-contain agar tidak terpotong */}
-            <Image
-              src={product.image}
-              alt={product.name}
-              fill
-              className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform hover:scale-105 transition-transform duration-700"
-              sizes="50vw"
-            />
+          <div className="relative h-[280px] sm:h-[350px] lg:h-[400px] mt-10 lg:mt-0">
+            <Image src={product.image} alt={product.name} fill className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform hover:scale-105 transition-transform duration-700" sizes="(max-width: 1024px) 100vw, 50vw" priority />
           </div>
         </div>
       </section>
@@ -85,7 +108,6 @@ export default function ProductDetailPage() {
                 </div>
               </div>
             )}
-
             <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100">
               <h2 className="text-2xl font-bold text-hyundai-primary mb-8">Fitur Unggulan</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -97,7 +119,6 @@ export default function ProductDetailPage() {
                 ))}
               </div>
             </div>
-
             <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100">
               <h2 className="text-2xl font-bold text-hyundai-primary mb-8">Spesifikasi</h2>
               <div className="space-y-4">
@@ -110,18 +131,12 @@ export default function ProductDetailPage() {
               </div>
             </div>
           </div>
-
           <div className="space-y-8">
             <div className="bg-hyundai-primary p-10 rounded-3xl text-white shadow-2xl relative overflow-hidden">
               <i className="fa-solid fa-shield-halved absolute -right-4 -bottom-4 text-9xl opacity-10 rotate-12"></i>
               <h3 className="text-xl font-bold mb-8 border-b border-white/20 pb-4">Keuntungan Pembelian</h3>
               <ul className="space-y-5">
-                {[
-                  "Cash, Kredit, Tukar Tambah, atau COP",
-                  "Data & BI Checking dibantu sampai Approve",
-                  "Layanan Home Test Drive 24 Jam",
-                  "Bonus Aksesoris Lengkap & Diskon Maksimal"
-                ].map((text, i) => (
+                {["Cash, Kredit, Tukar Tambah, atau COP", "Data & BI Checking dibantu sampai Approve", "Layanan Home Test Drive 24 Jam", "Bonus Aksesoris Lengkap & Diskon Maksimal"].map((text, i) => (
                   <li key={i} className="flex gap-4 items-start text-sm text-blue-100 font-light">
                     <i className="fa-solid fa-check-circle text-blue-400 mt-1"></i>
                     <span>{text}</span>

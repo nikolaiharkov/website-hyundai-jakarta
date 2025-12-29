@@ -6,20 +6,61 @@ import Footer from "../components/Footer";
 import FloatingWA from "../components/FloatingWA";
 
 export const metadata: Metadata = {
-  title: `${SITE_CONFIG.SALES_NAME} - Hyundai Jakarta`,
-  description: SITE_CONFIG.HERO_SUBHEAD,
-  icons: { icon: "/assets/logo/favicon.ico" }
+  metadataBase: new URL(SITE_CONFIG.DOMAIN),
+  title: {
+    default: `${SITE_CONFIG.SALES_NAME} - Dealer Resmi Hyundai Jakarta`,
+    template: `%s | ${SITE_CONFIG.SALES_NAME} Hyundai`
+  },
+  description: SITE_CONFIG.SITE_DESCRIPTION,
+  keywords: SITE_CONFIG.SITE_KEYWORDS,
+  authors: [{ name: SITE_CONFIG.SALES_NAME }],
+  robots: "index, follow",
+  icons: { icon: SITE_CONFIG.ICON_PATH },
+  openGraph: {
+    type: "website",
+    locale: "id_ID",
+    url: SITE_CONFIG.DOMAIN,
+    title: `${SITE_CONFIG.SALES_NAME} - Hyundai Jakarta`,
+    description: SITE_CONFIG.SITE_DESCRIPTION,
+    siteName: SITE_CONFIG.DEALER_NAME,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_CONFIG.SALES_NAME} - Hyundai Jakarta`,
+    description: SITE_CONFIG.SITE_DESCRIPTION,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // JSON-LD untuk Profile Sales (LocalBusiness/Person)
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "AutoDealer",
+    "name": SITE_CONFIG.DEALER_NAME,
+    "description": SITE_CONFIG.SITE_DESCRIPTION,
+    "url": SITE_CONFIG.DOMAIN,
+    "telephone": SITE_CONFIG.WHATSAPP_NUMBER,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Jakarta",
+      "addressRegion": "DKI Jakarta",
+      "addressCountry": "ID"
+    },
+    "founder": {
+      "@type": "Person",
+      "name": SITE_CONFIG.SALES_NAME,
+      "jobTitle": SITE_CONFIG.SALES_TITLE
+    }
+  };
+
   return (
-    /* Menambahkan suppressHydrationWarning untuk menghindari error atribut yang disuntikkan browser/plugin */
     <html lang="id" style={{ colorScheme: 'light' }} suppressHydrationWarning>
       <head>
-        {/* HARKOVNET ANALYTICS SCRIPT */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <script defer src="https://analytics.harkovnet.biz.id/script.js" data-website-id="810454d3-d0dd-456f-95e5-1b0256297b7a"></script>
-
-        {/* META PIXEL CODE */}
         <script dangerouslySetInnerHTML={{
           __html: `
             !function(f,b,e,v,n,t,s)
@@ -34,14 +75,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             fbq('track', 'PageView');
           `
         }} />
-
-        {/* FontAwesome CDN */}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-        {/* Google Fonts */}
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
-        {/* FIX: Menggunakan tag <script> biasa untuk memastikan urutan eksekusi Synchronous */}
         <script dangerouslySetInnerHTML={{
           __html: `
             tailwind.config = {
@@ -49,31 +84,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 extend: {
                   colors: {
                     hyundai: {
-                      primary: '#012C68',   // Deep Blue
-                      secondary: '#2A4B78', // Medium Blue
-                      accent: '#576F96',    // Soft Blue
-                      light: '#F6F8FA',     // Background White-ish
-                      dark: '#0B1220',      // Text Black-ish
-                      wa: '#25D366',        // WhatsApp Green
+                      primary: '#012C68', secondary: '#2A4B78', accent: '#576F96',
+                      light: '#F6F8FA', dark: '#0B1220', wa: '#25D366',
                     }
                   },
-                  fontFamily: {
-                    sans: ['Inter', 'sans-serif'],
-                  }
+                  fontFamily: { sans: ['Inter', 'sans-serif'] }
                 }
               }
             }
           `
         }} />
-
-        {/* Fallback CSS */}
         <style dangerouslySetInnerHTML={{
           __html: `
-            body {
-                font-family: 'Inter', sans-serif;
-                background-color: #F6F8FA !important;
-                color: #0B1220 !important;
-            }
+            body { font-family: 'Inter', sans-serif; background-color: #F6F8FA !important; color: #0B1220 !important; }
             @keyframes pulse-wa {
                 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
                 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
@@ -84,17 +107,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         }} />
       </head>
       <body className="antialiased flex flex-col min-h-screen bg-hyundai-light text-hyundai-dark">
-        {/* META PIXEL NOSCRIPT FALLBACK */}
         <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: 'none' }}
-            src="https://www.facebook.com/tr?id=2245403295939944&ev=PageView&noscript=1"
-            alt=""
-          />
+          <img height="1" width="1" style={{ display: 'none' }} src="https://www.facebook.com/tr?id=2245403295939944&ev=PageView&noscript=1" alt="" />
         </noscript>
-
         <Navbar />
         <main className="flex-grow pt-20">
           {children}

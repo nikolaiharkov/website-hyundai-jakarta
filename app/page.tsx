@@ -13,7 +13,6 @@ export default function HomePage() {
       {/* HERO SECTION */}
       <section className="relative pt-20 lg:pt-0 lg:h-screen flex items-center">
         <div className="absolute inset-0 z-0">
-          {/* OPTIMASI: Menggunakan fill, priority untuk LCP, dan object-cover */}
           <Image
             src="/assets/backgroud/hyundai-simprug.jpeg"
             alt="Showroom Hyundai Jakarta"
@@ -28,7 +27,6 @@ export default function HomePage() {
         <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 w-full py-16 lg:py-0">
           <div className="lg:w-7/12 text-white">
             <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 pr-6 pl-2 py-2 rounded-full mb-6">
-              {/* OPTIMASI: Menggunakan ukuran tetap untuk foto profil */}
               <div className="relative w-10 h-10 overflow-hidden rounded-full border-2 border-white">
                 <Image
                   src={SITE_CONFIG.SALES_PHOTO_PATH}
@@ -107,7 +105,6 @@ export default function HomePage() {
             {featuredProducts.map((product) => (
               <div key={product.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition border border-gray-100 flex flex-col group">
                 <div className="relative h-56 bg-gray-50 overflow-hidden flex items-center justify-center">
-                  {/* OPTIMASI: Menggunakan fill dan sizes untuk responsivitas gambar produk */}
                   <Image
                     src={product.image}
                     alt={`Hyundai ${product.name}`}
@@ -129,6 +126,55 @@ export default function HomePage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* AREA LAYANAN (LOCAL SEO ENHANCEMENT) */}
+      <section className="py-16 bg-white border-t border-gray-100">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold text-hyundai-primary mb-4 text-center">Wilayah Cakupan Layanan</h2>
+            <p className="text-gray-600 text-center max-w-3xl mx-auto">
+              Kami melayani konsultasi, test drive, dan pengantaran unit mobil Hyundai untuk seluruh wilayah Jakarta, Tangerang, dan Tangerang Selatan hingga tingkat kecamatan.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-12">
+            {SITE_CONFIG.SERVICE_AREAS.map((area, idx) => (
+              <div key={idx} className="space-y-6">
+                <div className="flex items-center gap-3 border-b-2 border-hyundai-secondary/20 pb-2">
+                  <i className="fa-solid fa-location-dot text-hyundai-secondary text-xl"></i>
+                  <h3 className="text-xl font-bold text-hyundai-primary uppercase tracking-wide">
+                    {area.city}
+                  </h3>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {area.districts.map((district, dIdx) => (
+                    <span
+                      key={dIdx}
+                      className="px-3 py-1 bg-hyundai-light text-gray-600 text-xs rounded-full border border-gray-100 hover:border-hyundai-secondary/30 transition-colors cursor-default"
+                      title={`Dealer & Sales Hyundai di ${district}`}
+                    >
+                      {/* MODIFIKASI: Menambahkan teks untuk crawlers tanpa merusak desain */}
+                      <span className="sr-only">Dealer & Sales Hyundai </span>
+                      {district}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16 p-8 bg-hyundai-primary rounded-3xl text-white text-center shadow-2xl">
+            <h3 className="text-2xl font-bold mb-4">Lokasi Anda Tidak Terdaftar?</h3>
+            <p className="mb-8 opacity-90">Jangan khawatir, kami tetap melayani pengiriman dan test drive untuk seluruh area JABODETABEK.</p>
+            <a
+              href={SITE_CONFIG.WHATSAPP_LINK}
+              className="inline-flex items-center gap-3 bg-white text-hyundai-primary px-10 py-4 rounded-xl font-black hover:scale-105 transition-transform"
+            >
+              <i className="fa-brands fa-whatsapp text-2xl"></i> CEK PROMO WILAYAH ANDA
+            </a>
           </div>
         </div>
       </section>
