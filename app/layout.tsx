@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script"; // Import komponen Script Next.js
 import "./globals.css";
 import { SITE_CONFIG } from "../lib/config";
 import Navbar from "../components/Navbar";
@@ -60,6 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* --- EXISTING SCRIPTS (Harkovnet & FB Pixel) --- */}
         <script defer src="https://analytics.harkovnet.biz.id/script.js" data-website-id="810454d3-d0dd-456f-95e5-1b0256297b7a"></script>
         <script dangerouslySetInnerHTML={{
           __html: `
@@ -75,8 +77,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             fbq('track', 'PageView');
           `
         }} />
+
+        {/* --- STYLES & FONTS --- */}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+        {/* --- TAILWIND CONFIG INJECTION --- */}
         <script dangerouslySetInnerHTML={{
           __html: `
             tailwind.config = {
@@ -110,12 +116,36 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <noscript>
           <img height="1" width="1" style={{ display: 'none' }} src="https://www.facebook.com/tr?id=2245403295939944&ev=PageView&noscript=1" alt="" />
         </noscript>
+
         <Navbar />
+
         <main className="flex-grow pt-20">
           {children}
         </main>
+
         <Footer />
         <FloatingWA />
+
+        {/* --- GOOGLE TAGS (Analytics & Ads) START --- */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-MHH139N98W"
+          strategy="afterInteractive"
+        />
+        <Script id="google-tags" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            // Konfigurasi Google Analytics 4
+            gtag('config', 'G-MHH139N98W');
+
+            // Konfigurasi Google Ads
+            gtag('config', 'AW-17882059118');
+          `}
+        </Script>
+        {/* --- GOOGLE TAGS END --- */}
+
       </body>
     </html>
   );
