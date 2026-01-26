@@ -4,9 +4,17 @@ import { SITE_CONFIG } from "../lib/config";
 import { PRODUCTS } from "../lib/products";
 
 export default function HomePage() {
+  // MODIFIKASI: Menampilkan 6 mobil terpopuler/unggulan
   const featuredProducts = PRODUCTS.filter(p =>
-    ["Stargazer", "Creta", "IONIQ 5"].includes(p.name)
-  ).slice(0, 3);
+    [
+      "New Creta",
+      "Stargazer",
+      "Stargazer X",
+      "All New Kona Electric",
+      "IONIQ 5",
+      "Palisade"
+    ].includes(p.name)
+  ).slice(0, 6);
 
   return (
     <div className="bg-hyundai-light">
@@ -127,6 +135,12 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+
+          <div className="mt-8 text-center md:hidden">
+            <Link href="/pricelist" className="inline-flex items-center text-hyundai-secondary font-semibold hover:text-hyundai-primary gap-2">
+              Lihat Semua Model <i className="fa-solid fa-arrow-right"></i>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -156,7 +170,6 @@ export default function HomePage() {
                       className="px-3 py-1 bg-hyundai-light text-gray-600 text-xs rounded-full border border-gray-100 hover:border-hyundai-secondary/30 transition-colors cursor-default"
                       title={`Dealer & Sales Hyundai di ${district}`}
                     >
-                      {/* MODIFIKASI: Menambahkan teks untuk crawlers tanpa merusak desain */}
                       <span className="sr-only">Dealer & Sales Hyundai </span>
                       {district}
                     </span>

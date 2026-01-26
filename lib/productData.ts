@@ -2,6 +2,15 @@ export const DETAILED_PRODUCT_INFO: Record<string, any> = {
   "h-01": { // Hyundai STARGAZER
     promo: "Down Payment (DP) hanya 20 JT-an | Angsuran 5 JT-an",
     tagline: "Bintang Baru Keluarga - Proses Kredit Dibantu Sampai Approve",
+    variants: [
+      { name: "Active MT", price: "Rp 258.200.000" },
+      { name: "Active IVT", price: "Rp 271.550.000" },
+      { name: "Essential MT", price: "Rp 270.300.000" },
+      { name: "Essential IVT", price: "Rp 282.000.000" },
+      { name: "Prime IVT", price: "Rp 331.900.000" },
+      { name: "Twotone Color", price: "+ Rp 1.500.000" },
+      { name: "Capt Seat (Essential)", price: "+ Rp 1.000.000" }
+    ],
     features: ["Hyundai Bluelink", "Captain Seat with Armrest", "SmartSense Safety", "Tire Pressure Monitoring"],
     specs: {
       "Mesin": "Smartstream G1.5 MPI Inline 4 Cylinders",
@@ -15,8 +24,10 @@ export const DETAILED_PRODUCT_INFO: Record<string, any> = {
     promo: "Crossover Stylish | Bunga Rendah | Ready Stock",
     tagline: "Unleash the X in You - Desain Tangguh & Futuristik",
     variants: [
-      { name: "X Style IVT", price: "Rp 347.750.000" },
-      { name: "X Prime IVT", price: "Rp 358.600.000" }
+      { name: "Style IVT", price: "Rp 347.750.000" },
+      { name: "Prime IVT", price: "Rp 358.600.000" },
+      { name: "Capt Seat", price: "+ Rp 3.500.000" },
+      { name: "Matte Colour", price: "+ Rp 3.500.000" }
     ],
     features: ["Bose Premium Sound System", "17-inch Diamond Cut Alloy", "LED Multi Focus Reflector", "Electric Parking Brake"],
     specs: {
@@ -29,6 +40,15 @@ export const DETAILED_PRODUCT_INFO: Record<string, any> = {
   "h-03": { // Hyundai STARGAZER CARTENZ
     promo: "Special Edition Cartenz | Penawaran Harga Nego",
     tagline: "Edisi Khusus dengan Sentuhan Eksklusif",
+    variants: [
+      { name: "Trend MT", price: "Rp 276.100.000" },
+      { name: "Trend IVT", price: "Rp 286.350.000" },
+      { name: "Style MT", price: "Rp 296.600.000" },
+      { name: "Style IVT", price: "Rp 306.800.000" },
+      { name: "Smart IVT", price: "Rp 340.350.000" },
+      { name: "Prime IVT", price: "Rp 358.300.000" },
+      { name: "Capt Seat (Prime)", price: "+ Rp 3.500.000" }
+    ],
     features: ["Cartenz Interior Theme", "Unique Exterior Accents", "Bluelink Technology"],
     specs: {
       "Varian Dasar": "Stargazer Essential",
@@ -39,6 +59,13 @@ export const DETAILED_PRODUCT_INFO: Record<string, any> = {
   "h-04": { // Hyundai STARGAZER CARTENZ X
     promo: "Premium Crossover Edition | Unit Terbatas",
     tagline: "Kombinasi Ketangguhan X dan Eksklusivitas Cartenz",
+    variants: [
+      { name: "Trend IVT", price: "Rp 370.250.000" },
+      { name: "Style IVT", price: "Rp 383.700.000" },
+      { name: "Prime IVT", price: "Rp 400.700.000" },
+      { name: "Capt Seat", price: "+ Rp 3.500.000" },
+      { name: "Matte Colour", price: "+ Rp 3.500.000" }
+    ],
     features: ["Cartenz X Body Kit", "Premium Leather Seats", "Advanced Driver Assistance"],
     specs: {
       "Transmisi": "Intelligent Variable Transmission (IVT)",
@@ -50,9 +77,14 @@ export const DETAILED_PRODUCT_INFO: Record<string, any> = {
     promo: "SUV Kompak Terpopuler | Cicilan Ringan",
     tagline: "Spotlight in Motion - Desain Parametric yang Memukau",
     variants: [
-      { name: "Active MT", price: "Rp 299.700.000" },
-      { name: "Trend IVT", price: "Rp 352.140.000" },
-      { name: "Prime IVT", price: "Rp 426.940.000" }
+      { name: "Active MT", price: "Rp 307.800.000" },
+      { name: "Trend MT", price: "Rp 340.600.000" },
+      { name: "Trend IVT", price: "Rp 361.650.000" },
+      { name: "Style IVT", price: "Rp 407.350.000" },
+      { name: "Prime IVT", price: "Rp 438.500.000" },
+      { name: "N Line IVT", price: "Rp 473.000.000" },
+      { name: "N Line Turbo", price: "Rp 521.000.000" },
+      { name: "Twotone", price: "+ Rp 3.000.000" }
     ],
     features: ["Panoramic Sunroof", "Ventilated Seats", "Bose Audio System", "Bluelink Services"],
     specs: {
@@ -62,24 +94,27 @@ export const DETAILED_PRODUCT_INFO: Record<string, any> = {
       "Dimensi": "4315 x 1790 x 1630 mm"
     }
   },
-  "h-06": { // Hyundai THE NEW CRETA (N Line)
-    promo: "Varian Terbaru N Line | Tampilan Lebih Sporty",
-    tagline: "Lead the Way with Performance Spirit",
-    features: ["N Line Dedicated Grille", "N Line Interior Accents", "Sporty Alloy Wheels"],
+  "h-06": { // Hyundai NEW CRETA ALPHA (Updated)
+    promo: "Mode to be Bold | Edisi Terbatas",
+    tagline: "Tampil Beda dengan Creta Alpha",
+    variants: [
+      { name: "Creta Alpha IVT", price: "Rp 455.000.000" }
+    ],
+    features: ["Matte Paint Finish", "Black Interior Accents", "Red Stitching Details", "Monogram Alpha"],
     specs: {
-      "Tipe": "N Line / N Line Turbo",
-      "Karakter": "Sport Performance SUV",
-      "Warna": "Magnetic Silver Matte / Midnight Black"
+      "Tipe": "Special Edition",
+      "Karakter": "Bold & Stylish",
+      "Warna": "Matte (Doff) Exclusive"
     }
   },
   "h-07": { // Hyundai ALL NEW SANTA FE
     promo: "Tersedia Varian Hybrid (HEV) & Gasoline 2.5",
     tagline: "The All-New Luxury SUV - Transaksi Aman 100%",
     variants: [
-      { name: "Prime G 2.5", price: "Rp 724.000.000" },
-      { name: "Calligraphy G 2.5", price: "Rp 812.500.000" },
-      { name: "HEV Prime (Hybrid)", price: "Rp 814.300.000" },
-      { name: "HEV Calligraphy (Hybrid)", price: "Rp 900.500.000" }
+      { name: "2.5 Gasoline Prime", price: "Rp 735.800.000" },
+      { name: "2.5 Gasoline Calligraphy", price: "Rp 825.300.000" },
+      { name: "HEV Prime (Hybrid)", price: "Rp 827.400.000" },
+      { name: "HEV Calligraphy (Hybrid)", price: "Rp 914.700.000" }
     ],
     features: ["Panoramic Sunroof", "Hybrid Power", "Highway Driving Assist", "Luxury Interior Layout"],
     specs: {
@@ -88,7 +123,7 @@ export const DETAILED_PRODUCT_INFO: Record<string, any> = {
       "Layanan": "Data Dijemput & BI Checking Dibantu"
     }
   },
-  "h-08": { // Hyundai PALISADE (Diesel)
+  "h-08": { // Hyundai PALISADE (Existing Data Kept)
     promo: "Flagship SUV | Harga Nego di Tempat",
     tagline: "Empower Your World - Kemewahan Tanpa Batas",
     variants: [
@@ -104,9 +139,14 @@ export const DETAILED_PRODUCT_INFO: Record<string, any> = {
       "Transmisi": "8-Speed Automatic"
     }
   },
-  "h-09": { // Hyundai PALISADE HYBRID
+  "h-09": { // Hyundai PALISADE HEV (Updated from Brochure)
     promo: "Kombinasi Kemewahan & Efisiensi | Bunga Rendah",
     tagline: "Premium Hybrid SUV Experience",
+    variants: [
+      { name: "Signature", price: "Rp 1.131.900.000" },
+      { name: "Calligraphy", price: "Rp 1.304.700.000" },
+      { name: "Calligraphy AWD", price: "Rp 1.391.800.000" }
+    ],
     features: ["e-Ride Gen2 Technology", "Stay Mode", "Forward Collision Avoidance 2.0", "VIP Second Row"],
     specs: {
       "Mesin": "Smartstream 2.5 T-GDi Hybrid",
@@ -119,7 +159,10 @@ export const DETAILED_PRODUCT_INFO: Record<string, any> = {
     tagline: "Power Your World - Masa Depan di Tangan Anda",
     variants: [
       { name: "Prime Standard Range", price: "Rp 809.000.000" },
-      { name: "Signature Long Range", price: "Rp 925.600.000" }
+      { name: "Prime Long Range", price: "Rp 851.500.000" },
+      { name: "Signature Standard Range", price: "Rp 873.900.000" },
+      { name: "Signature Long Range", price: "Rp 925.600.000" },
+      { name: "Matte Colour", price: "+ Rp 3.500.000" }
     ],
     features: ["V2L (Vehicle-to-Load)", "Relaxation Comfort Seat", "Eco-friendly Materials", "E-GMP Platform"],
     specs: {
@@ -144,7 +187,13 @@ export const DETAILED_PRODUCT_INFO: Record<string, any> = {
     tagline: "Move with the Future",
     variants: [
       { name: "Style Standard Range", price: "Rp 565.250.000" },
-      { name: "Signature Long Range", price: "Rp 668.550.000" }
+      { name: "Prime Standard Range", price: "Rp 565.250.000" },
+      { name: "Prime Long Range", price: "Rp 634.500.000" },
+      { name: "Signature Standard Range", price: "Rp 651.650.000" },
+      { name: "Signature Long Range", price: "Rp 668.550.000" },
+      { name: "N Line", price: "Rp 689.550.000" },
+      { name: "Twotone", price: "+ Rp 3.000.000" },
+      { name: "Matte Colour", price: "+ Rp 3.500.000" }
     ],
     features: ["Connected Car Navigation Cockpit", "Pixelated Seamless Horizon Lamp", "Dual integrated displays"],
     specs: {
