@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { SITE_CONFIG } from "../lib/config";
 import { PRODUCTS } from "../lib/products";
+import PromoSection from "../components/PromoSection";
 
 export default function HomePage() {
   // MODIFIKASI: Menampilkan 6 mobil terpopuler/unggulan
@@ -95,6 +96,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* MODIFIKASI: SECTION PROMO TERBARU */}
+      <PromoSection />
 
       {/* MODEL TERPOPULER */}
       <section className="py-16 bg-hyundai-light">
