@@ -5,7 +5,7 @@ import { PRODUCTS } from "../lib/products";
 import PromoSection from "../components/PromoSection";
 
 export default function HomePage() {
-  // MODIFIKASI: Menampilkan 6 mobil terpopuler/unggulan
+  // Menampilkan 6 mobil terpopuler/unggulan
   const featuredProducts = PRODUCTS.filter(p =>
     [
       "New Creta",
@@ -70,6 +70,30 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* VIDEO TERBARU SECTION */}
+      <section className="py-16 bg-hyundai-light">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-hyundai-primary">Video Terbaru</h2>
+            <p className="text-gray-500 mt-2">Tonton review dan informasi produk Hyundai terbaru secara detail.</p>
+          </div>
+
+          <div className="max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+            <div className="aspect-video">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/ZA5hIXBrOLI?si=OvVi3y2p8X_-yrom"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* KEUNGGULAN SECTION */}
       <section className="py-16 bg-white">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -97,7 +121,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* MODIFIKASI: SECTION PROMO TERBARU */}
       <PromoSection />
 
       {/* MODEL TERPOPULER */}
@@ -148,7 +171,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* AREA LAYANAN (LOCAL SEO ENHANCEMENT) */}
+      {/* AREA LAYANAN */}
       <section className="py-16 bg-white border-t border-gray-100">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12">

@@ -9,7 +9,7 @@ export interface Product {
 
 export const PRODUCTS: Product[] = [
   {
-    id: "h-01",
+    id: "stargazer",
     name: "Stargazer",
     price: "Mulai Rp 258 Juta-an",
     priceNumeric: 258200000,
@@ -17,7 +17,7 @@ export const PRODUCTS: Product[] = [
     image: "/foto-product/e6b490fe85_hyundai-stargazer-prime-creamy-white-pearl__1_-removebg-preview.png"
   },
   {
-    id: "h-02",
+    id: "stargazer-x",
     name: "Stargazer X",
     price: "Mulai Rp 347 Juta-an",
     priceNumeric: 347750000,
@@ -25,7 +25,7 @@ export const PRODUCTS: Product[] = [
     image: "/foto-product/26bfb63fb4_Stargazer-X-3.png"
   },
   {
-    id: "h-03",
+    id: "stargazer-cartenz",
     name: "Stargazer Cartenz",
     price: "Mulai Rp 276 Juta-an",
     priceNumeric: 276100000,
@@ -33,7 +33,7 @@ export const PRODUCTS: Product[] = [
     image: "/foto-product/e94db3f3a7_COVER-DEPAN-STARGAZER-CARTENZ-789x400.png"
   },
   {
-    id: "h-04",
+    id: "stargazer-cartenz-x",
     name: "Stargazer Cartenz X",
     price: "Mulai Rp 370 Juta-an",
     priceNumeric: 370250000,
@@ -41,7 +41,7 @@ export const PRODUCTS: Product[] = [
     image: "/foto-product/abf3c818d1_COVER-DEPAN-STARGAZER-CARTENZ-X-789x400.png"
   },
   {
-    id: "h-05",
+    id: "new-creta",
     name: "New Creta",
     price: "Mulai Rp 307 Juta-an",
     priceNumeric: 307800000,
@@ -49,7 +49,7 @@ export const PRODUCTS: Product[] = [
     image: "/foto-product/1cc4564e94_hyundai-creta-2022-color-451142-removebg-preview-1-1.png"
   },
   {
-    id: "h-06",
+    id: "new-creta-alpha",
     name: "New Creta Alpha",
     price: "Rp 455.000.000",
     priceNumeric: 455000000,
@@ -57,7 +57,7 @@ export const PRODUCTS: Product[] = [
     image: "/foto-product/d3dd0359ec_n-line-midnight-black-matte.png"
   },
   {
-    id: "h-07",
+    id: "all-new-santa-fe",
     name: "All New Santa Fe",
     price: "Mulai Rp 735 Juta-an",
     priceNumeric: 735800000,
@@ -65,7 +65,7 @@ export const PRODUCTS: Product[] = [
     image: "/foto-product/becfb4410e_001.-WHITE-PEARL-2-789x400.png"
   },
   {
-    id: "h-08",
+    id: "palisade",
     name: "Palisade",
     price: "Mulai Rp 943 Juta-an",
     priceNumeric: 943000000,
@@ -73,7 +73,7 @@ export const PRODUCTS: Product[] = [
     image: "/foto-product/930a29c494_hyundai-palisade-color-141242-removebg-preview-1.png"
   },
   {
-    id: "h-09",
+    id: "palisade-hybrid",
     name: "Palisade Hybrid",
     price: "Mulai Rp 1,13 Miliar-an",
     priceNumeric: 1131900000,
@@ -81,7 +81,7 @@ export const PRODUCTS: Product[] = [
     image: "/foto-product/b29107b4d0_001.-PALISADE-HEV-PUTIH-1.png"
   },
   {
-    id: "h-10",
+    id: "ioniq-5",
     name: "IONIQ 5",
     price: "Mulai Rp 809 Juta-an",
     priceNumeric: 809000000,
@@ -89,7 +89,7 @@ export const PRODUCTS: Product[] = [
     image: "/foto-product/18ce96208b_hyundai-ioniq-5-color-751349-removebg-preview-1.png"
   },
   {
-    id: "h-11",
+    id: "ioniq-6",
     name: "IONIQ 6",
     price: "Mulai Rp 1,2 Miliar-an",
     priceNumeric: 1200000000,
@@ -97,7 +97,7 @@ export const PRODUCTS: Product[] = [
     image: "/foto-product/ea3d291029_image-removebg-preview-2023-08-24T072824.224.png"
   },
   {
-    id: "h-12",
+    id: "all-new-kona-electric",
     name: "All New Kona Electric",
     price: "Mulai Rp 565 Juta-an",
     priceNumeric: 565250000,
@@ -105,7 +105,7 @@ export const PRODUCTS: Product[] = [
     image: "/foto-product/899901d9d2_5JW5ZHZ7ZHH022_WR7_03-789x400.png"
   },
   {
-    id: "h-13",
+    id: "staria",
     name: "Staria",
     price: "Mulai Rp 934 Juta-an",
     priceNumeric: 934000000,

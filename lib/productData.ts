@@ -1,5 +1,5 @@
 export const DETAILED_PRODUCT_INFO: Record<string, any> = {
-  "h-01": { // Hyundai STARGAZER
+  "stargazer": {
     promo: "Down Payment (DP) hanya 20 JT-an | Angsuran 5 JT-an",
     tagline: "Bintang Baru Keluarga - Proses Kredit Dibantu Sampai Approve",
     variants: [
@@ -20,7 +20,7 @@ export const DETAILED_PRODUCT_INFO: Record<string, any> = {
       "Kapasitas Tangki": "40 Liter"
     }
   },
-  "h-02": { // Hyundai STARGAZER X
+  "stargazer-x": {
     promo: "Crossover Stylish | Bunga Rendah | Ready Stock",
     tagline: "Unleash the X in You - Desain Tangguh & Futuristik",
     variants: [
@@ -37,7 +37,7 @@ export const DETAILED_PRODUCT_INFO: Record<string, any> = {
       "Ground Clearance": "200 mm"
     }
   },
-  "h-03": { // Hyundai STARGAZER CARTENZ
+  "stargazer-cartenz": {
     promo: "Special Edition Cartenz | Penawaran Harga Nego",
     tagline: "Edisi Khusus dengan Sentuhan Eksklusif",
     variants: [
@@ -56,7 +56,7 @@ export const DETAILED_PRODUCT_INFO: Record<string, any> = {
       "Layanan": "Free Home Test Drive 24 Jam"
     }
   },
-  "h-04": { // Hyundai STARGAZER CARTENZ X
+  "stargazer-cartenz-x": {
     promo: "Premium Crossover Edition | Unit Terbatas",
     tagline: "Kombinasi Ketangguhan X dan Eksklusivitas Cartenz",
     variants: [
@@ -73,7 +73,7 @@ export const DETAILED_PRODUCT_INFO: Record<string, any> = {
       "BI Checking": "Dibantu Sampai Approve"
     }
   },
-  "h-05": { // Hyundai CRETA
+  "new-creta": {
     promo: "SUV Kompak Terpopuler | Cicilan Ringan",
     tagline: "Spotlight in Motion - Desain Parametric yang Memukau",
     variants: [
@@ -94,12 +94,10 @@ export const DETAILED_PRODUCT_INFO: Record<string, any> = {
       "Dimensi": "4315 x 1790 x 1630 mm"
     }
   },
-  "h-06": { // Hyundai NEW CRETA ALPHA (Updated)
+  "new-creta-alpha": {
     promo: "Mode to be Bold | Edisi Terbatas",
     tagline: "Tampil Beda dengan Creta Alpha",
-    variants: [
-      { name: "Creta Alpha IVT", price: "Rp 455.000.000" }
-    ],
+    variants: [{ name: "Creta Alpha IVT", price: "Rp 455.000.000" }],
     features: ["Matte Paint Finish", "Black Interior Accents", "Red Stitching Details", "Monogram Alpha"],
     specs: {
       "Tipe": "Special Edition",
@@ -107,7 +105,7 @@ export const DETAILED_PRODUCT_INFO: Record<string, any> = {
       "Warna": "Matte (Doff) Exclusive"
     }
   },
-  "h-07": { // Hyundai ALL NEW SANTA FE
+  "all-new-santa-fe": {
     promo: "Tersedia Varian Hybrid (HEV) & Gasoline 2.5",
     tagline: "The All-New Luxury SUV - Transaksi Aman 100%",
     variants: [
@@ -123,7 +121,7 @@ export const DETAILED_PRODUCT_INFO: Record<string, any> = {
       "Layanan": "Data Dijemput & BI Checking Dibantu"
     }
   },
-  "h-08": { // Hyundai PALISADE (Existing Data Kept)
+  "palisade": {
     promo: "Flagship SUV | Harga Nego di Tempat",
     tagline: "Empower Your World - Kemewahan Tanpa Batas",
     variants: [
@@ -139,7 +137,7 @@ export const DETAILED_PRODUCT_INFO: Record<string, any> = {
       "Transmisi": "8-Speed Automatic"
     }
   },
-  "h-09": { // Hyundai PALISADE HEV (Updated from Brochure)
+  "palisade-hybrid": {
     promo: "Kombinasi Kemewahan & Efisiensi | Bunga Rendah",
     tagline: "Premium Hybrid SUV Experience",
     variants: [
@@ -154,7 +152,7 @@ export const DETAILED_PRODUCT_INFO: Record<string, any> = {
       "Transmisi": "6-Speed Automatic Hybrid"
     }
   },
-  "h-10": { // Hyundai IONIQ 5
+  "ioniq-5": {
     promo: "Mobil Listrik Pertama Buatan Indonesia | PPN 1%",
     tagline: "Power Your World - Masa Depan di Tangan Anda",
     variants: [
@@ -171,7 +169,7 @@ export const DETAILED_PRODUCT_INFO: Record<string, any> = {
       "Charging": "10-80% dalam 18 Menit (Ultra Fast)"
     }
   },
-  "h-11": { // Hyundai IONIQ 6
+  "ioniq-6": {
     promo: "SIAP KIRIM | Bunga 0% & Free Wall Charger",
     tagline: "Awaken Your World - Inovasi Tanpa Batas",
     features: ["Interactive Pixel Lights", "Dual Motor AWD", "Streamliner Design", "Advanced V2L"],
@@ -182,7 +180,7 @@ export const DETAILED_PRODUCT_INFO: Record<string, any> = {
       "Emisi": "0 g/km (Full Electric)"
     }
   },
-  "h-12": { // Hyundai ALL NEW KONA ELECTRIC
+  "all-new-kona-electric": {
     promo: "Electric SUV Terbaru | Jarak Tempuh Terjauh",
     tagline: "Move with the Future",
     variants: [
@@ -202,7 +200,7 @@ export const DETAILED_PRODUCT_INFO: Record<string, any> = {
       "Motor": "Permanent Magnet Synchronous"
     }
   },
-  "h-13": { // Hyundai STARIA
+  "staria": {
     promo: "Luxury MPV Eksklusif | Ready Stock",
     tagline: "Larger than Life - Kenyamanan Kelas Utama",
     variants: [
