@@ -3,6 +3,7 @@ import Image from "next/image";
 import { SITE_CONFIG } from "../lib/config";
 import { PRODUCTS } from "../lib/products";
 import PromoSection from "../components/PromoSection";
+import DeliverySection from "../components/DeliverySection"; // Import section baru
 
 export default function HomePage() {
   // Menampilkan 6 mobil terpopuler/unggulan
@@ -93,6 +94,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* SECTION DOKUMENTASI PENGIRIMAN (BARU) */}
+      <DeliverySection />
 
       {/* KEUNGGULAN SECTION */}
       <section className="py-16 bg-white">
